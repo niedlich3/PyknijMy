@@ -48,7 +48,7 @@
    <img src="logo.png" class="logo">
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
-		<li><a href="wyszukiwanie.html">Wyszukaj wydarzenia</a></li>
+		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
 		<li class="btn">Stwórz konto</li>
 	</ul>
   </nav>
@@ -56,30 +56,30 @@
         <table>
             <tr>
                 <td>Miasto:</td>
-                <td><input type="text" name="Miasto"></td>
+                <td><input type="text" name="Miasto" required></td>
             </tr>
             <tr>
                 <td>Ulica:</td>
-                <td><input type="text" name="Ulica"></td>
+                <td><input type="text" name="Ulica" required></td>
             </tr>
             <tr>
                 <td>Data:</td>
-                <td><input type="date" name="Data"></td>
+                <td><input type="date" name="Data" required></td>
             </tr>
             <tr>
                 <td>Godzina:</td>
-                <td><input type="time" name="Godzina"></td>
+                <td><input type="time" name="Godzina" required></td>
             </tr>
             <tr>
                 <td>Liczba osób zapisanych:</td>
-                <td><input type="number" name="Zapisani"></td>
+                <td><input type="number" name="Zapisani" required></td>
             </tr>
             <tr>
                 <td>Maksymalna Liczba osób:</td>
-                <td><input type="number" name="Max"></td>
+                <td><input type="number" name="Max" required></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Dodaj Wydarzenie"></td>
+                <td colspan="2"><input type="submit" value="Dodaj Wydarzenie" required></td>
             </tr>
         </table>
     </form>
