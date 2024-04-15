@@ -114,12 +114,18 @@ nav{
 }
 .EventTable {
 	width: 100%;
-	border-collapse: collapse;
+	
+	background-color: #D5D3FE;
+	border-spacing: 10px;
 }
 
 .EventTable th {
 	text-align: center;
+	border: 1px solid black;
+	margin-top: 10px;
 }
 .EventTable td {
 	text-align: center;
+	
+	margin-top: 10px;
 }
