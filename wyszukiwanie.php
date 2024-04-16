@@ -4,7 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Wyszukaj wydarzenie</title>
-	<link rel="stylesheet" href="kurwastyl.css">
+	<link rel="stylesheet" href="styl_pyknijmy.css">
+
+
 </head>
 <body>
 	
