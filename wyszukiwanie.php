@@ -31,17 +31,46 @@
 		 die("Błąd połączenia: " . mysqli_connect_error());
 	 }
 
-	 $wynik = mysqli_query($conn, "SELECT * from wydarzenia");
-	 echo '<table class="EventTable"><tr><th>Miasto</th><th>Ulica</th><th>Data</th><th>Godzina</th><th>Osoby zapisane</th><th>Max liczba osób</th></tr>';
-	 while($row = mysqli_fetch_array($wynik)) {
-		echo "<tr><td>{$row['miasto']}</td><td>{$row['ulica']}</td><td>{$row['data']}</td><td>{$row['godzina']}<td>{$row['osoby_zapisane']}<td>{$row['max_osoby']}</tr>";
+	$wynik = mysqli_query($conn, "SELECT * from wydarzenia");
+	 function funkcja($result) {
+		 while ($row = mysqli_fetch_assoc($result)){
+			 echo '<div class="klasa">';
+			 echo '<a href="ogloszenie.php?id=' . $row['id'] . '">';
+			 echo '</a>';
+			 echo '<div class="mmmm">' . 'Miasto: ', $row['miasto'], ' ';
+			 echo '<div class="nnnn">' . 'Ulica: ', $row['ulica'], ' ';
+			 echo '</div>';
+			 echo '<a class="ogloszenie" href="ogloszenie.php?id=' . $row['id'] . '">';
+			 echo 'Opis wydarzenia';
+			 echo '</a>';
+			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
+			 echo '</div>';
+			 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';
+			 echo '</div>';
+			 echo '<div class="rrrr">' . 'Wymagana ilość osób: ', $row['max_osoby'], ' ';
+			 echo '</div>';
+			 echo '<div class="eeee">' . '<b>Osoby zapisane: </b>', $row['osoby_zapisane'], ' ';
+			 echo '</div>';
+			 echo '</div>';
+			 
+			 echo '</div>';
+		 }
 	 }
-	 echo '</table>';
-
+	// echo '<table class="EventTable"><tr><th>Miasto</th><th>Ulica</th><th>Data</th><th>Godzina</th><th>Osoby zapisane</th><th>Max liczba osób</th></tr>';
+	// while($row = mysqli_fetch_array($wynik)) {
+	//	echo "<tr><td>{$row['miasto']}</td><td>{$row['ulica']}</td><td>{$row['data']}</td><td>{$row['godzina']}<td>{$row['osoby_zapisane']}<td>{$row['max_osoby']}</tr>";
+	// }
+	// echo '</table>';
+ 
 	mysqli_close($conn);
 	?>
+	<div class="conteiner">
+	<div class="kategoria">Piłka nożna </div>
+		<?php funkcja($wynik); ?>
+  </div>
 </div>
 
+ 
 <footer>
 		<div class = "footerContainer">
 		 <div class = "footerNav">
