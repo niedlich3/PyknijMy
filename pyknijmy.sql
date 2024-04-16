@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 19 Mar 2024, 22:28
+-- Czas generowania: 16 Kwi 2024, 20:45
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -42,8 +42,8 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`) VALUES
-(8, 'asd', 'asd', '0000-00-00', '00:00:00', 3, 12),
-(9, 'asd', 'asd', '0000-00-00', '00:00:00', 3, 12);
+(10, 'Tanowo', 'ulica', '2024-04-18', '02:21:00', 1, 123),
+(11, 'Szczecin', 'Tanowska', '2024-04-20', '03:02:00', 12, 23);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -63,7 +63,7 @@ ALTER TABLE `wydarzenia`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
