@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dodawanie wydarzenia</title>
-    <link rel="stylesheet" href="kurwastyl.css">
+    <link rel="stylesheet" href="styl_pyknijmy.css">
 </head>
 <body>
 <?php
