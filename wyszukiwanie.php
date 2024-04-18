@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Wyszukaj wydarzenie</title>
 	<link rel="stylesheet" href="styl_pyknijmy.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 </head>
@@ -19,6 +20,22 @@
 		<li class="btn">Stwórz konto</li>
 	</ul>
   </nav>
+  <script>
+        $(document).ready(function(){
+            $('.zapisz').click(function(){
+                var idWydarzenia = $(this).data('wydarzenie'); 
+                $.ajax({
+                    url: 'zapisz.php',
+                    type: 'POST',
+                    data: { idWydarzenia: idWydarzenia }, 
+                    success: function(response){
+                        alert(response);
+                        location.reload(); 
+                    }
+                });
+            });
+        });
+    </script>
   <?php
 	 $host = 'localhost'; 
 	 $username = 'root';
@@ -30,7 +47,6 @@
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
 	 }
-
 	$wynik = mysqli_query($conn, "SELECT * from wydarzenia");
 	 function funkcja($result) {
 		 while ($row = mysqli_fetch_assoc($result)){
@@ -43,6 +59,9 @@
 			 echo '<a class="ogloszenie" href="ogloszenie.php?id=' . $row['id'] . '">';
 			 echo 'Opis wydarzenia';
 			 echo '</a>';
+			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
+			 echo 'Zapisz się';
+			 echo '</button>';
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
 			 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';
@@ -56,6 +75,9 @@
 			 echo '</div>';
 		 }
 	 }
+	 
+
+
 	// echo '<table class="EventTable"><tr><th>Miasto</th><th>Ulica</th><th>Data</th><th>Godzina</th><th>Osoby zapisane</th><th>Max liczba osób</th></tr>';
 	// while($row = mysqli_fetch_array($wynik)) {
 	//	echo "<tr><td>{$row['miasto']}</td><td>{$row['ulica']}</td><td>{$row['data']}</td><td>{$row['godzina']}<td>{$row['osoby_zapisane']}<td>{$row['max_osoby']}</tr>";
