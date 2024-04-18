@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Kwi 2024, 16:19
--- Wersja serwera: 10.4.21-MariaDB
--- Wersja PHP: 8.0.11
+-- Czas generowania: 18 Kwi 2024, 21:48
+-- Wersja serwera: 10.4.27-MariaDB
+-- Wersja PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,17 +35,20 @@ CREATE TABLE `wydarzenia` (
   `godzina` time NOT NULL,
   `osoby_zapisane` int(11) NOT NULL,
   `max_osoby` int(11) NOT NULL,
-  `opis` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `opis` text NOT NULL,
+  `kategoria` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `wydarzenia`
 --
 
-INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`, `opis`) VALUES
-(9, 'asd', 'asd', '0000-00-00', '00:00:00', 3, 12, ''),
-(10, 'Tanowo', 'Słoneczna 1', '2024-04-24', '12:04:00', 2, 32, ''),
-(13, 'Tanowo', 'Radosna', '2024-04-13', '12:40:00', 12, 22, 'Gramy dzisiaj w piłkę nożną, szukamy ludzi do gry pozdro');
+INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`, `opis`, `kategoria`) VALUES
+(20, 'Tanowo', 'Tanowska', '2024-04-19', '18:45:00', 3, 32, 'Testowe', 'Siatkówka'),
+(25, 'Tanowo', 'Słoneczna 1', '2024-04-19', '23:32:00', 2, 12, 'Gramy sobie w piłke', 'Piłka nożna'),
+(26, 'Tanowo', 'Radosna', '2024-04-04', '12:02:00', 13, 24, 'Gramy sobie w piłke', 'Piłka nożna'),
+(27, 'Police', 'Piaskowa', '2024-04-30', '12:12:00', 2, 4, 'Koszykówka', 'Koszykówka'),
+(28, 'Tanowo', 'Tanowska', '2024-04-19', '12:50:00', 12, 23, 'Testowe', 'Piłka nożna');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -65,7 +68,7 @@ ALTER TABLE `wydarzenia`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
