@@ -26,6 +26,7 @@
         $Zapisani = $_POST['Zapisani'];
         $Max = $_POST['Max'];
 		$Opis = $_POST['Opis'];
+		$Kategoria = $_POST['Kategoria'];
         
         $Miasto = mysqli_real_escape_string($conn, $Miasto);
         $Ulica = mysqli_real_escape_string($conn, $Ulica);
@@ -33,8 +34,10 @@
         $Godzina = mysqli_real_escape_string($conn, $Godzina);
         $Zapisani = mysqli_real_escape_string($conn, $Zapisani);
         $Max = mysqli_real_escape_string($conn, $Max);
+        $Opis = mysqli_real_escape_string($conn, $Opis);
+        $Kategoria = mysqli_real_escape_string($conn, $Kategoria);
         
-        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis')";
+        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis, kategoria) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis','$Kategoria')";
         
         if (mysqli_query($conn, $dodawanie)) {
             echo "Wydarzenie zostało pomyślnie dodane";
@@ -83,6 +86,15 @@
                 <td>Opis wydarzenia:</td>
                 <td><input type="text" name="Opis" required></td>
             </tr>
+			<tr>
+			<td><label for="Kategoria">Kategoria sportowa: </label>
+				<select name="Kategoria" required>
+					<option value="Piłka nożna">Piłka nożna</option>
+					<option value="Siatkówka">Siatkówka</option>
+					<option value="Koszykówka">Koszykówka</option>
+					<option value="Inne">Inne</option>
+				</select></td>
+			</tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Dodaj Wydarzenie" required></td>
             </tr>
