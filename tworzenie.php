@@ -25,6 +25,7 @@
         $Godzina = $_POST['Godzina'];
         $Zapisani = $_POST['Zapisani'];
         $Max = $_POST['Max'];
+		$Opis = $_POST['Opis'];
         
         $Miasto = mysqli_real_escape_string($conn, $Miasto);
         $Ulica = mysqli_real_escape_string($conn, $Ulica);
@@ -33,7 +34,7 @@
         $Zapisani = mysqli_real_escape_string($conn, $Zapisani);
         $Max = mysqli_real_escape_string($conn, $Max);
         
-        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max')";
+        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis')";
         
         if (mysqli_query($conn, $dodawanie)) {
             echo "Wydarzenie zostało pomyślnie dodane";
@@ -77,6 +78,10 @@
             <tr>
                 <td>Maksymalna Liczba osób:</td>
                 <td><input type="number" name="Max" required></td>
+            </tr>
+			<tr>
+                <td>Opis wydarzenia:</td>
+                <td><input type="text" name="Opis" required></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Dodaj Wydarzenie" required></td>
