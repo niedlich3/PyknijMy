@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="styl_pyknijmy.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
 </head>
 <body>
 	
@@ -47,7 +46,22 @@
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
 	 }
+
 	$wynik = mysqli_query($conn, "SELECT * from wydarzenia");
+	
+	$noga = "SELECT * FROM wydarzenia WHERE kategoria = 'Piłka nożna'";
+	 $wynik_noga = mysqli_query($conn, $noga);
+	 
+	 $siatka = "SELECT * FROM wydarzenia WHERE kategoria = 'Siatkówka'";
+	 $wynik_siatka = mysqli_query($conn, $siatka);
+	 
+	 $kosz = "SELECT * FROM wydarzenia WHERE kategoria = 'Koszykówka'";
+	 $wynik_kosz = mysqli_query($conn, $kosz);
+	 
+	 $inne = "SELECT * FROM wydarzenia WHERE kategoria = 'Inne'";
+	 $wynik_inne = mysqli_query($conn, $inne);
+	 
+	 
 	 function funkcja($result) {
 		 while ($row = mysqli_fetch_assoc($result)){
 			 echo '<div class="klasa">';
@@ -59,11 +73,11 @@
 			 echo '<a class="ogloszenie" href="ogloszenie.php?id=' . $row['id'] . '">';
 			 echo 'Opis wydarzenia';
 			 echo '</a>';
-			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
-			 echo 'Zapisz się';
-			 echo '</button>';
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
+			  echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
+			 echo 'Zapisz się';
+			 echo '</button>';
 			 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';
 			 echo '</div>';
 			 echo '<div class="rrrr">' . 'Wymagana ilość osób: ', $row['max_osoby'], ' ';
@@ -75,9 +89,6 @@
 			 echo '</div>';
 		 }
 	 }
-	 
-
-
 	// echo '<table class="EventTable"><tr><th>Miasto</th><th>Ulica</th><th>Data</th><th>Godzina</th><th>Osoby zapisane</th><th>Max liczba osób</th></tr>';
 	// while($row = mysqli_fetch_array($wynik)) {
 	//	echo "<tr><td>{$row['miasto']}</td><td>{$row['ulica']}</td><td>{$row['data']}</td><td>{$row['godzina']}<td>{$row['osoby_zapisane']}<td>{$row['max_osoby']}</tr>";
@@ -88,7 +99,13 @@
 	?>
 	<div class="conteiner">
 	<div class="kategoria">Piłka nożna </div>
-		<?php funkcja($wynik); ?>
+		<?php funkcja($wynik_noga); ?>
+	<div class="kategoria">Siatkówka </div>
+		<?php funkcja($wynik_siatka); ?>
+	<div class="kategoria">Koszykówka</div>
+		<?php funkcja($wynik_kosz); ?>
+	<div class="kategoria">Inne </div>
+		<?php funkcja($wynik_inne); ?>		
   </div>
 </div>
 
