@@ -12,7 +12,16 @@ footer{
 	background-color: #111;
 	bottom:0;
 	width: 100vw;
+	margin-top: auto;
 	
+}
+html{
+	height: 100%;
+}
+body{
+	min-height: 100%;
+	display: flex;
+	flex-direction:  column;
 }
 .footerNav{
 	margin: 30px 0;
@@ -142,6 +151,7 @@ nav{
 	height: 100px;
 	font-size: 25px;
 	float:left;
+	text-align: center;
 }
 .mmmm{
 	border: 1px solid black;
@@ -163,5 +173,5 @@ nav{
 .zapisz{
 	float:right;
 	margin-top: 35px;
-	margin-right: -120px;
+	
 }
