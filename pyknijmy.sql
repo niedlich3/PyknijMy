@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Kwi 2024, 20:45
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.2.0
+-- Czas generowania: 18 Kwi 2024, 16:19
+-- Wersja serwera: 10.4.21-MariaDB
+-- Wersja PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,16 +34,18 @@ CREATE TABLE `wydarzenia` (
   `data` date NOT NULL,
   `godzina` time NOT NULL,
   `osoby_zapisane` int(11) NOT NULL,
-  `max_osoby` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `max_osoby` int(11) NOT NULL,
+  `opis` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `wydarzenia`
 --
 
-INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`) VALUES
-(10, 'Tanowo', 'ulica', '2024-04-18', '02:21:00', 1, 123),
-(11, 'Szczecin', 'Tanowska', '2024-04-20', '03:02:00', 12, 23);
+INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`, `opis`) VALUES
+(9, 'asd', 'asd', '0000-00-00', '00:00:00', 3, 12, ''),
+(10, 'Tanowo', 'Słoneczna 1', '2024-04-24', '12:04:00', 2, 32, ''),
+(13, 'Tanowo', 'Radosna', '2024-04-13', '12:40:00', 12, 22, 'Gramy dzisiaj w piłkę nożną, szukamy ludzi do gry pozdro');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -63,7 +65,7 @@ ALTER TABLE `wydarzenia`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
