@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Wyszukaj wydarzenie</title>
+	<title>Opis wydarzenia</title>
 	<link rel="stylesheet" href="styl_pyknijmy.css">
 
 
@@ -34,6 +34,7 @@
 	 $sql = "SELECT * FROM wydarzenia WHERE id = $id";
 	 $result = mysqli_query($conn, $sql);
 	 
+	 
 	 if(mysqli_num_rows($result) > 0) {
 		 $row = mysqli_fetch_assoc($result);
 		 echo '<div class="ogloszenie_miasto">' . 'Miasto: ', $row['miasto'], ' ';
@@ -41,6 +42,7 @@
 		 echo '</div>';
 		 echo '<div class="ogloszenie_opis">' . 'Opis wydarzenia: ', $row['opis'], '';
 		 echo '</div>';
+		 echo '<div class="ogloszenie_kategoria">' . 'Kategoria sportowa: ', $row['kategoria'], ' ';
 		 echo '</div>';
 	 }else{
 		 echo 'Brak danych.';
