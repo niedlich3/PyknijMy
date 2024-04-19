@@ -16,20 +16,20 @@
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="">Wyszukaj wydarzenia</a></li>
+		<li class="btn">Stwórz konto</li>
 		
 
 		
 	</ul>
   </nav>
- 
-</div>
+ </div>
 
  
 <footer>
 		<div class = "footerContainer">
 		 <div class = "footerNav">
 		  <ul>
-		    <li><a href = "index.html">Home</a></li>	
+		    <li><a href = "index.php">Home</a></li>	
 			<li><a href= "https://linktr.ee/beatbuddy">About Us</a></li>
 		
 		  </ul>
