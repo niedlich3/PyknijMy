@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Opis wydarzenia</title>
 	<link rel="stylesheet" href="styl_pyknijmy.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -17,8 +17,25 @@
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="">Wyszukaj wydarzenia</a></li>
 		<li class="btn">Stwórz konto</li>
+		<a href="logout.php">Logout</a>
 	</ul>
   </nav>
+  <script>
+        $(document).ready(function(){
+            $('.zapisz').click(function(){
+                var idWydarzenia = $(this).data('wydarzenie'); 
+                $.ajax({
+                    url: 'zapisz.php',
+                    type: 'POST',
+                    data: { idWydarzenia: idWydarzenia }, 
+                    success: function(response){
+                       
+                        location.reload(); 
+                    }
+                });
+            });
+        });
+    </script>
 <?php
 	 $host = 'localhost'; 
 	 $username = 'root';
@@ -40,10 +57,23 @@
 		 echo '<div class="ogloszenie_miasto">' . 'Miasto: ', $row['miasto'], ' ';
 		 echo '<div class="ogloszenie_ulica">' . 'Ulica: ', $row['ulica'], ' ';
 		 echo '</div>';
+		 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
+		 echo '</div>';
+		 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
+		 echo 'Zapisz się';
+		 echo '</button>';
+		 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';
+		 echo '</div>';
+		 echo '<div class="rrrr">' . 'Wymagana ilość osób: ', $row['max_osoby'], ' ';
+		 echo '</div>';
+		 echo '<div class="eeee">' . '<b>Osoby zapisane: </b>', $row['osoby_zapisane'], ' ';
+		 echo '</div>';
 		 echo '<div class="ogloszenie_opis">' . 'Opis wydarzenia: ', $row['opis'], '';
 		 echo '</div>';
 		 echo '<div class="ogloszenie_kategoria">' . 'Kategoria sportowa: ', $row['kategoria'], ' ';
 		 echo '</div>';
+		 echo '</div>';
+	
 	 }else{
 		 echo 'Brak danych.';
 	 }
@@ -54,7 +84,7 @@
 		<div class = "footerContainer">
 		 <div class = "footerNav">
 		  <ul>
-		    <li><a href = "index.html">Home</a></li>	
+		    <li><a href = "index.php">Home</a></li>	
 			<li><a href= "https://linktr.ee/beatbuddy">About Us</a></li>
 		
 		  </ul>
