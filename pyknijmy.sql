@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Kwi 2024, 21:48
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.2.0
+-- Generation Time: Apr 19, 2024 at 02:39 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `pyknijmy`
+-- Database: `pyknijmy`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `wydarzenia`
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wydarzenia`
 --
 
 CREATE TABLE `wydarzenia` (
@@ -37,38 +51,54 @@ CREATE TABLE `wydarzenia` (
   `max_osoby` int(11) NOT NULL,
   `opis` text NOT NULL,
   `kategoria` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `wydarzenia`
+-- Dumping data for table `wydarzenia`
 --
 
 INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`, `opis`, `kategoria`) VALUES
-(20, 'Tanowo', 'Tanowska', '2024-04-19', '18:45:00', 3, 32, 'Testowe', 'Siatkówka'),
-(25, 'Tanowo', 'Słoneczna 1', '2024-04-19', '23:32:00', 2, 12, 'Gramy sobie w piłke', 'Piłka nożna'),
-(26, 'Tanowo', 'Radosna', '2024-04-04', '12:02:00', 13, 24, 'Gramy sobie w piłke', 'Piłka nożna'),
+(20, 'Tanowo', 'Tanowska', '2024-04-19', '18:45:00', 23, 32, 'Testowe', 'Siatkówka'),
+(25, 'Tanowo', 'Słoneczna 1', '2024-04-19', '23:32:00', 7, 12, 'Gramy sobie w piłke', 'Piłka nożna'),
+(26, 'Tanowo', 'Radosna', '2024-04-04', '12:02:00', 15, 24, 'Gramy sobie w piłke', 'Piłka nożna'),
 (27, 'Police', 'Piaskowa', '2024-04-30', '12:12:00', 2, 4, 'Koszykówka', 'Koszykówka'),
-(28, 'Tanowo', 'Tanowska', '2024-04-19', '12:50:00', 12, 23, 'Testowe', 'Piłka nożna');
+(28, 'Tanowo', 'Tanowska', '2024-04-19', '12:50:00', 13, 23, 'Testowe', 'Piłka nożna'),
+(29, 'Police', 'Tanowska', '2024-04-11', '01:55:00', 1, 12, 'Test dla zdjecia', 'Koszykówka');
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `wydarzenia`
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `date` (`date`),
+  ADD KEY `user_name` (`user_name`);
+
+--
+-- Indexes for table `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `wydarzenia`
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
