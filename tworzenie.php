@@ -27,6 +27,7 @@
         $Max = $_POST['Max'];
 		$Opis = $_POST['Opis'];
 		$Kategoria = $_POST['Kategoria'];
+		$Zdjecia = $_POST['Zdjecia'];
         
         $Miasto = mysqli_real_escape_string($conn, $Miasto);
         $Ulica = mysqli_real_escape_string($conn, $Ulica);
@@ -36,8 +37,9 @@
         $Max = mysqli_real_escape_string($conn, $Max);
         $Opis = mysqli_real_escape_string($conn, $Opis);
         $Kategoria = mysqli_real_escape_string($conn, $Kategoria);
+        $Zdjecia = mysqli_real_escape_string($conn, $Zdjecia);
         
-        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis, kategoria) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis','$Kategoria')";
+        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis, kategoria, zdjecia) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis','$Kategoria', '$Zdjecia')";
         
         if (mysqli_query($conn, $dodawanie)) {
             echo "Wydarzenie zostało pomyślnie dodane";
@@ -95,6 +97,10 @@
 					<option value="Inne">Inne</option>
 				</select></td>
 			</tr>
+			<tr>
+				<td>Dodaj zdjecia do wydarzenia: </td>
+				<td><input type ="file" name="Zdjecia" accept="image/*" required multiple="multiple"></td>
+			</tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Dodaj Wydarzenie" required></td>
             </tr>
@@ -107,7 +113,7 @@
 		<div class = "footerContainer">
 		 <div class = "footerNav">
 		  <ul>
-		    <li><a href = "index.html">Home</a></li>	
+		    <li><a href = "index.php">Home</a></li>	
 			<li><a href= "https://linktr.ee/beatbuddy">About Us</a></li>
 		
 		  </ul>
