@@ -168,10 +168,34 @@ nav{
 	float:right;
 }
 .ogloszenie_miasto{
-	
+	border: 1px solid black;
+	float: left;
+	padding: 10px;
+	width: 65%;
+	height: 260px;
+	margin-top: 1vh;
+	margin-left: 15vw;
+	font-size: 25px;
+	border-radius: 10px;
 }
 .zapisz{
 	float:right;
 	margin-top: 35px;
 	
+}
+.right{
+	border: 1px solid black;
+	float: left;
+	padding: 10px;
+	width: 65%;
+	height: 200px;
+	margin-top: 1vh;
+	margin-left: 15vw;
+	font-size: 25px;
+	border-radius: 10px;
+}
+.zapisz{
+	height: 50px;
+	width:50px;
+	border-radius: 10px;
 }
