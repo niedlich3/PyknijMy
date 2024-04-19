@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PyknijMy</title>
 	<link rel="stylesheet" href="styl_pyknijmy.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div class = "header"> 
@@ -40,8 +41,7 @@
   
 	session_start();
 
-	include("connection.php");
-	include("functions.php");
+	
 	
 	
 	 $host = 'localhost'; 
@@ -83,7 +83,7 @@
 			 echo '</a>';
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
-			  echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
+			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
 			 echo 'Zapisz się';
 			 echo '</button>';
 			 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';
@@ -121,7 +121,7 @@
 		<div class = "footerContainer">
 		 <div class = "footerNav">
 		  <ul>
-		    <li><a href = "index.html">Home</a></li>	
+		    <li><a href = "index.php">Home</a></li>	
 			<li><a href= "https://linktr.ee/beatbuddy">About Us</a></li>
 		
 		  </ul>
