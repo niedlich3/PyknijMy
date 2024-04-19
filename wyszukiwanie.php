@@ -16,7 +16,10 @@
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="">Wyszukaj wydarzenia</a></li>
-		<li class="btn">Stwórz konto</li>
+		<a href="logout.php">Logout</a>
+
+		<br>
+		Hello, <?php echo $user_data['user_name']; ?>
 	</ul>
   </nav>
   <script>
@@ -36,6 +39,12 @@
         });
     </script>
   <?php
+	session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
 	 $host = 'localhost'; 
 	 $username = 'root';
 	 $password = ''; 
