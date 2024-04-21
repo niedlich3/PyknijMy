@@ -49,6 +49,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
+<a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
 	<title>Login</title>
 </head>
 <body>
@@ -75,11 +76,19 @@ session_start();
 
 	#box{
 
-		background-color: #FFEA00;
+		background-color: #fff600;
 		margin: auto;
 		width: 300px;
 		padding: 20px;
         border-radius: 10%;
+	}
+	body{
+	background-color: #191919;
+
+	}
+	.logo{
+		width: 200px;
+
 	}
 
 	</style>
