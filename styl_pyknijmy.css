@@ -101,7 +101,7 @@ nav{
 }
 .nav-links li a::after{
 	content: '';
-	background: #ff3d00;
+	background: #fff600;
 	width: 0;
 	height: 2px;
 	position: absolute;
@@ -113,8 +113,8 @@ nav{
 	width: 100%;
 }
 .btn{
-	background: #ff3d00;
-	color: #fff;
+	background: #fff600;
+	color: #000;
 	padding: 10px 30px;
 	border-radius: 3px;
 	cursor: pointer;
@@ -164,7 +164,7 @@ nav{
 	font-size: 25px;
 	border-radius: 10px;
 	animation: animateFrame 2s linear infinite;
-	background-color: #ffffb3;
+	background-color: #fff600;
 }
 @keyframes animateFrame {
     0% {
@@ -172,7 +172,7 @@ nav{
     }
 
     65% {
-        border-color: #ff3d00; /* KoĹ„cowy kolor ramki */
+        border-color: #fff000; /* KoĹ„cowy kolor ramki */
     }
 
     100% {
@@ -196,6 +196,8 @@ nav{
 .zapisz{
 	float:right;
 	margin-top: 35px;
+	background-color: #000;
+	color: #fff;
 	
 }
 .right{
