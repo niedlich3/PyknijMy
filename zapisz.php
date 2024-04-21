@@ -26,6 +26,17 @@
         echo "Błąd: " . $zapis . "<br>" . mysqli_error($conn);
     }
 
-    $conn->close();
+	$del = "DELETE FROM wydarzenia WHERE osoby_zapisane = max_osoby";
+
+    $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
+
+
+    if(mysqli_query($conn, $del)){
+        echo "Wydarzenie osiągneło maksymalną liczbę osób";
+    }
+
+
+    
+	$conn->close();
 }
 ?>

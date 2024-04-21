@@ -11,8 +11,9 @@
 <body>
 	
 <div class = "header"> 
+	
   <nav>
-   <img src="logo.png" class="logo">
+   <a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="">Wyszukaj wydarzenia</a></li>
@@ -22,6 +23,7 @@
 		
 	</ul>
   </nav>
+  
  </div>
 
  

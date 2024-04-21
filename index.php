@@ -10,7 +10,9 @@
 <body>
 <div class = "header"> 
   <nav>
-   <img src="logo.png" class="logo">
+   <a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
+	
+   
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
@@ -21,6 +23,7 @@
 		Hello, <?php echo $user_data['user_name']; ?>
 	</ul>
   </nav>
+ 
 <script>
         $(document).ready(function(){
             $('.zapisz').click(function(){
@@ -54,19 +57,25 @@
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
 	 }
+	 
+	  $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
+	 
+	 if(mysqli_query($conn, $del_time)){
+        echo "";
+    }
 
-	$wynik = mysqli_query($conn, "SELECT * from wydarzenia");
+	$wynik = mysqli_query($conn, "SELECT * from wydarzenia ORDER BY data, godzina");
 	
-	$noga = "SELECT * FROM wydarzenia WHERE kategoria = 'Piłka nożna'";
+	$noga = "SELECT * FROM wydarzenia WHERE kategoria = 'Piłka nożna' ORDER BY data, godzina";
 	 $wynik_noga = mysqli_query($conn, $noga);
 	 
-	 $siatka = "SELECT * FROM wydarzenia WHERE kategoria = 'Siatkówka'";
+	 $siatka = "SELECT * FROM wydarzenia WHERE kategoria = 'Siatkówka' ORDER BY data, godzina";
 	 $wynik_siatka = mysqli_query($conn, $siatka);
 	 
-	 $kosz = "SELECT * FROM wydarzenia WHERE kategoria = 'Koszykówka'";
+	 $kosz = "SELECT * FROM wydarzenia WHERE kategoria = 'Koszykówka' ORDER BY data, godzina";
 	 $wynik_kosz = mysqli_query($conn, $kosz);
 	 
-	 $inne = "SELECT * FROM wydarzenia WHERE kategoria = 'Inne'";
+	 $inne = "SELECT * FROM wydarzenia WHERE kategoria = 'Inne' ORDER BY data, godzina";
 	 $wynik_inne = mysqli_query($conn, $inne);
 	 
 	 
@@ -81,6 +90,8 @@
 			 echo '<a class="ogloszenie" href="ogloszenie.php?id=' . $row['id'] . '">';
 			 echo 'Opis wydarzenia';
 			 echo '</a>';
+			 echo '<div class ="hhhh">' . '<b>Kategoria sportowa wydarzenia: </b>' . $row['kategoria'];
+			 echo '</div>';
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
 			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
@@ -106,15 +117,11 @@
 	mysqli_close($conn);
 	?>
 	<div class="conteiner">
-	<div class="kategoria">Piłka nożna </div>
-		<?php funkcja($wynik_noga); ?>
-	<div class="kategoria">Siatkówka </div>
-		<?php funkcja($wynik_siatka); ?>
-	<div class="kategoria">Koszykówka</div>
-		<?php funkcja($wynik_kosz); ?>
-	<div class="kategoria">Inne </div>
-		<?php funkcja($wynik_inne); ?>		
+	<div class="kategoria"><b>Aktywne wydarzenia </b></div>
+		<?php funkcja($wynik); ?>
+		
   </div>
+  
 </div>
 
 <footer>

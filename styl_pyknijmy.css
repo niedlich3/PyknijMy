@@ -74,7 +74,7 @@ body{
 .header{
 	min-height: 100vh;
 	width: 100vw;
-	
+	background-color: #191919;
 	position: relative;
 }
 nav{
@@ -153,16 +153,31 @@ nav{
 	float:left;
 	text-align: center;
 }
-.mmmm{
-	border: 1px solid black;
+.klasa{
+	border: 4px solid transparent;
 	float: left;
 	padding: 10px;
 	width: 65%;
-	height: 200px;
+	height: 230px;
 	margin-top: 1vh;
 	margin-left: 15vw;
 	font-size: 25px;
 	border-radius: 10px;
+	animation: animateFrame 2s linear infinite;
+	background-color: #ffffb3;
+}
+@keyframes animateFrame {
+    0% {
+        border-color: black; /* PoczÄ…tkowy kolor ramki */
+    }
+
+    65% {
+        border-color: #ff3d00; /* KoĹ„cowy kolor ramki */
+    }
+
+    100% {
+        border-color: black; /* PoczÄ…tkowy kolor ramki */
+    }
 }
 .ogloszenie{
 	float:right;
@@ -198,4 +213,13 @@ nav{
 	height: 50px;
 	width:50px;
 	border-radius: 10px;
+}
+.zdjecie_tlo{
+	width: 100vw;
+	height: 100vh;
+}
+.kategoria{
+	color: white;
+	margin-top: 1vh;
+	font-size: 30px;
 }

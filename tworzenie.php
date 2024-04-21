@@ -37,9 +37,9 @@
         $Max = mysqli_real_escape_string($conn, $Max);
         $Opis = mysqli_real_escape_string($conn, $Opis);
         $Kategoria = mysqli_real_escape_string($conn, $Kategoria);
-        $Zdjecia = mysqli_real_escape_string($conn, $Zdjecia);
         
-        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis, kategoria, zdjecia) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis','$Kategoria', '$Zdjecia')";
+        
+        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis, kategoria) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis','$Kategoria')";
         
         if (mysqli_query($conn, $dodawanie)) {
             echo "Wydarzenie zostało pomyślnie dodane";
@@ -51,7 +51,7 @@
 ?>
     <div class = "header"> 
   <nav>
-   <img src="logo.png" class="logo">
+<a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
@@ -99,7 +99,7 @@
 			</tr>
 			<tr>
 				<td>Dodaj zdjecia do wydarzenia: </td>
-				<td><input type ="file" name="Zdjecia" accept="image/*" required multiple="multiple"></td>
+				<td><input type ="file" name="Zdjecia" accept="image/*" multiple="multiple"></td>
 			</tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Dodaj Wydarzenie" required></td>
