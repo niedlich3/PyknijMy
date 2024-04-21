@@ -16,7 +16,9 @@
     <ul class="nav-links">
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
-		<li class="btn">Stwórz konto</li>
+		<li class="btn">
+            <a href="signup.php">Stwórz konto</a>
+        </li>
 		<a href="logout.php">Logout</a>
 
 		<br>
