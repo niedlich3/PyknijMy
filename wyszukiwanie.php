@@ -1,3 +1,12 @@
+<?php
+  
+  session_start();
+
+  include("connection.php");
+  include("functions.php");
+  $user_data = check_login($con);
+?>
+<!DOCT
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -13,14 +22,22 @@
 <div class = "header"> 
 	
   <nav>
-   <a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
-    <ul class="nav-links">
-		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
-		<li><a href="">Wyszukaj wydarzenia</a></li>
-		<li class="btn">Stwórz konto</li>
-		
+   <a href = "index.php"><img src="logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
+   
 
-		
+   
+    <ul class="nav-links">
+		<li><a class="text" style="color: white;">Hello, <?php echo $user_data['user_name']; ?></a></li>
+		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
+		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
+		<li class="btn" style="color: black;">
+            <a href="signup.php" style="color: black;">Stwórz konto</a>
+			
+        </li>
+		<li class="btn" style="color: black;">
+			<a href="logout.php" style="color: black;">Logout</a>
+		</li>
+
 	</ul>
   </nav>
   
