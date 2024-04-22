@@ -72,7 +72,7 @@ session_start();
 	}
 	.logo{
 		width: 200px;
-
+		margin-left: 42vw;
 	}
 	</style>
 
