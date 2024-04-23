@@ -6,7 +6,6 @@
   include("functions.php");
   $user_data = check_login($conn);
 ?>
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -18,7 +17,7 @@
 </head>
 <body>
 <div class = "header"> 
- <nav>
+  <nav>
    <a href = "index.php"><img src="logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
    
 
@@ -38,9 +37,10 @@
 	</ul>
   </nav>
  
-
   <?php
   
+	
+
 	 
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
@@ -67,7 +67,7 @@
 	 $wynik_inne = mysqli_query($conn, $inne);
 	 
 	 
-	 function funkcja($result) {
+	  function funkcja($result) {
 		 while ($row = mysqli_fetch_assoc($result)) {
 			 echo '<div class="klasa">';
 			 echo '<a href="ogloszenie.php?id=' . $row['id'] . '">';
@@ -78,8 +78,7 @@
 			 echo '<a class="ogloszenie" href="ogloszenie.php?id=' . $row['id'] . '">';
 			 echo 'Opis wydarzenia';
 			 echo '</a>';
-			 echo '<div class ="hhhh">' . '<b>Kategoria sportowa wydarzenia: </b>' . $row['kategoria'];
-			 echo '</div>';
+			
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
 			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
@@ -95,7 +94,8 @@
 			 
 			 echo '</div>';
 		 }
-	 }
+	 } 
+
 	// echo '<table class="EventTable"><tr><th>Miasto</th><th>Ulica</th><th>Data</th><th>Godzina</th><th>Osoby zapisane</th><th>Max liczba osób</th></tr>';
 	// while($row = mysqli_fetch_array($wynik)) {
 	//	echo "<tr><td>{$row['miasto']}</td><td>{$row['ulica']}</td><td>{$row['data']}</td><td>{$row['godzina']}<td>{$row['osoby_zapisane']}<td>{$row['max_osoby']}</tr>";
@@ -105,12 +105,28 @@
 	mysqli_close($conn);
 	?>
 	<div class="conteiner">
-	<div class="kategoria"><b>Aktywne wydarzenia </b></div>
-		<?php funkcja($wynik); ?>
-		
-  </div>
-  
-</div>
+    <div class="kategoria"><b>Aktywne wydarzenia </b></div>
+    
+    <select class="kategoria" id="kategorie" style="background-color: black;">
+        <option value="pilka_nozna">Piłka nożna</option>
+        <option value="koszykowka">Koszykówka</option>
+        <option value="siatkowka">Siatkówka</option>
+        <option value="inne">Inne</option>
+    </select>
+    <div class="wydarzenia pilka_nozna">
+        <?php funkcja($wynik_noga); ?>
+    </div>
+    <div class="wydarzenia koszykowka">
+        <?php funkcja($wynik_kosz); ?>
+    </div>
+    <div class="wydarzenia siatkowka">
+        <?php funkcja($wynik_siatka); ?>
+    </div>
+    <div class="wydarzenia inne">
+        <?php funkcja($wynik_inne); ?>
+    </div>     
+	</div>
+	</div>
 
 <footer>
 		<div class = "footerContainer">
