@@ -1,3 +1,11 @@
+<?php
+  
+  session_start();
+
+  include("connection.php");
+  include("functions.php");
+  $user_data = check_login($conn);
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -37,12 +45,7 @@
         });
     </script>
 <?php
-	 $host = 'localhost'; 
-	 $username = 'root';
-	 $password = ''; 
-	 $database = 'pyknijmy'; 
-	 
-	 $conn = mysqli_connect($host, $username, $password, $database);
+	
 	 
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
