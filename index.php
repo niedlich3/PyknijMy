@@ -24,13 +24,12 @@
 
    
     <ul class="nav-links">
-		<li><a class="text" style="color: white;">Hello, <?php echo $user_data['user_name']; ?></a></li>
+		<li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: white;">Hello, <?php echo $user_data['user_name']; ?></a></li>
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
-		<li class="btn" style="color: black;">
-            <a href="signup.php" style="color: black;">Stwórz konto</a>
-			
-        </li>
+		<li><?php echo '<a class="profil" href="profil.php?id=' . $row['id'] . '">';
+			 echo 'Opis wydarzenia';
+			 echo '</a>';?></li>
 		<li class="btn" style="color: black;">
 			<a href="logout.php" style="color: black;">Logout</a>
 		</li>
