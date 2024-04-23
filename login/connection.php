@@ -3,9 +3,9 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "login";
+$dbname = "pyknijmy";
 
-if(!$con  = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname))
+if(!$conn  = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname))
 {
 
         die("Failed to connect!");
