@@ -15,7 +15,8 @@
 </head>
 <body>
 <?php
-
+   
+    
     if (!$conn) {
         die("Błąd połączenia: " . mysqli_connect_error());
     }
@@ -137,5 +138,6 @@
 		  <p>Copyright &copy;2024; Designed by <span class = "designer">SCI</span></p>
 		 </div>
 		</footer>
+		<script src="script.js"></script>
 </body>
 </html>

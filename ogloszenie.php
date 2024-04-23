@@ -28,24 +28,9 @@
 		<a href="logout.php">Logout</a>
 	</ul>
   </nav>
-  <script>
-        $(document).ready(function(){
-            $('.zapisz').click(function(){
-                var idWydarzenia = $(this).data('wydarzenie'); 
-                $.ajax({
-                    url: 'zapisz.php',
-                    type: 'POST',
-                    data: { idWydarzenia: idWydarzenia }, 
-                    success: function(response){
-                       
-                        location.reload(); 
-                    }
-                });
-            });
-        });
-    </script>
+  
 <?php
-	
+	 
 	 
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
@@ -98,5 +83,6 @@
 		  <p>Copyright &copy;2024; Designed by <span class = "designer">SCI</span></p>
 		 </div>
 		</footer>
+		<script src="script.js"></script>
 </body>
 </html>

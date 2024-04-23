@@ -37,52 +37,10 @@
 	</ul>
   </nav>
  
-<script>
-        $(document).ready(function(){
-            $('.zapisz').click(function(){
-                var idWydarzenia = $(this).data('wydarzenie'); 
-                $.ajax({
-                    url: 'zapisz.php',
-                    type: 'POST',
-                    data: { idWydarzenia: idWydarzenia }, 
-                    success: function(response){
-                       
-                        location.reload(); 
-                    }
-                });
-            });
-        });
-    </script>
-	<script>
-
-		$(document).ready(function() {
- 	 		 $('#kategorie').val('');
-		});
-
-
-		$(document).ready(function(){
-        $('#kategorie').change(function(){
-            var selectedCategory = $(this).val();
-            $.ajax({
-                url: 'kategorie.php',
-                type: 'POST',
-                data: { category: selectedCategory },
-                success: function(response){
-                    $('.wydarzenia').hide(); // Ukryj wszystkie wydarzenia
-                    $('.' + selectedCategory).show(); // Pokaż wydarzenia z wybranej kategorii
-                }
-            });
-        });
-    });
-	</script>
   <?php
   
 	
 
-	
-	
-	
-	
 	 
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());

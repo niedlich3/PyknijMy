@@ -38,30 +38,9 @@
 	</ul>
   </nav>
  
-<script>
-        $(document).ready(function(){
-            $('.zapisz').click(function(){
-                var idWydarzenia = $(this).data('wydarzenie'); 
-                $.ajax({
-                    url: 'zapisz.php',
-                    type: 'POST',
-                    data: { idWydarzenia: idWydarzenia }, 
-                    success: function(response){
-                       
-                        location.reload(); 
-                    }
-                });
-            });
-        });
-    </script>
+
   <?php
   
-
-
-	
-	
-	
-	
 	 
 	 if (!$conn) {
 		 die("Błąd połączenia: " . mysqli_connect_error());
