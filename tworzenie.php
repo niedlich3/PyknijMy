@@ -15,13 +15,7 @@
 </head>
 <body>
 <?php
-    $host = 'localhost'; 
-    $username = 'root';
-    $password = ''; 
-    $database = 'pyknijmy'; 
-    
-    $conn = mysqli_connect($host, $username, $password, $database);
-    
+
     if (!$conn) {
         die("Błąd połączenia: " . mysqli_connect_error());
     }
