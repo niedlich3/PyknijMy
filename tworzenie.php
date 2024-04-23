@@ -63,10 +63,6 @@
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
 		<li class="btn" style="color: black;">
-            <a href="signup.php" style="color: black;">Stwórz konto</a>
-			
-        </li>
-		<li class="btn" style="color: black;">
 			<a href="logout.php" style="color: black;">Logout</a>
 		</li>
 
