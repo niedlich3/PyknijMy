@@ -4,7 +4,7 @@
 
   include("connection.php");
   include("functions.php");
-  $user_data = check_login($con);
+  $user_data = check_login($conn);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -77,7 +77,7 @@
 	</script>
   <?php
   
-	session_start();
+	
 
 	
 	
@@ -125,8 +125,7 @@
 			 echo '<a class="ogloszenie" href="ogloszenie.php?id=' . $row['id'] . '">';
 			 echo 'Opis wydarzenia';
 			 echo '</a>';
-			 echo '<div class ="hhhh">' . '<b>Kategoria sportowa wydarzenia: </b>' . $row['kategoria'];
-			 echo '</div>';
+			
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
 			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
