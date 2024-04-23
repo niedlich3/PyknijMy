@@ -50,7 +50,7 @@ session_start();
 <html>
 <head>
 <a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
-	<title>Login</title>
+	<title>Logowanie</title>
 </head>
 <body>
 
@@ -67,13 +67,14 @@ session_start();
 
 	#button{
 
-		padding: 10px;
-		width: 100px;
-		color: white;
-		background-color: black;
-		border: none;
+	background-color: #000;
+    color: #fff600;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
 	}
-
 	#box{
 
 		background-color: #fff600;
@@ -91,19 +92,25 @@ session_start();
 		margin-left: 42vw;
 	}
 
+	input[name="user_name"], input[name="password"]{
+	background-color: #191919;
+	border: 1px solid #000;
+	color:#fff;
+	}
 	</style>
 
 	<div id="box">
 		
 		<form method="post">
-			<div style="font-size: 20px;margin: 10px;color: black;">Login</div>
+			<div style="font-size: 20px;margin: 10px;color: black;">Logowanie</div>
 
 			<input id="text" type="text" placeholder="Nazwa użytkownika" name="user_name"><br><br>
 			<input id="text" type="password" placeholder="Hasło" name="password"><br><br>
 
-			<input id="button" type="submit" value="Login"><br><br>
-
-			<a href="signup.php">Click to Signup</a><br><br>
+			<input id="button" type="submit" value="Zaloguj się"><br><br>
+			<a href="signup.php" style="color: black;">
+        	Zarejestruj się
+    		</a><br><br>
 		</form>
 	</div>
 </body>
