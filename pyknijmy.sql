@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 02:39 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Czas generowania: 25 Kwi 2024, 17:07
+-- Wersja serwera: 10.4.27-MariaDB
+-- Wersja PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pyknijmy`
+-- Baza danych: `pyknijmy`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktura tabeli dla tabeli `users`
 --
 
 CREATE TABLE `users` (
@@ -32,13 +32,22 @@ CREATE TABLE `users` (
   `user_id` bigint(20) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `about_me` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`id`, `user_id`, `user_name`, `password`, `date`, `about_me`) VALUES
+(1, 21396, 'niedlich', '123456', '2024-04-25 14:43:23', ''),
+(2, 572938, 'Szymon', '123456', '2024-04-23 17:44:19', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wydarzenia`
+-- Struktura tabeli dla tabeli `wydarzenia`
 --
 
 CREATE TABLE `wydarzenia` (
@@ -51,26 +60,23 @@ CREATE TABLE `wydarzenia` (
   `max_osoby` int(11) NOT NULL,
   `opis` text NOT NULL,
   `kategoria` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `wydarzenia`
+-- Zrzut danych tabeli `wydarzenia`
 --
 
 INSERT INTO `wydarzenia` (`id`, `miasto`, `ulica`, `data`, `godzina`, `osoby_zapisane`, `max_osoby`, `opis`, `kategoria`) VALUES
-(20, 'Tanowo', 'Tanowska', '2024-04-19', '18:45:00', 23, 32, 'Testowe', 'Siatkówka'),
-(25, 'Tanowo', 'Słoneczna 1', '2024-04-19', '23:32:00', 7, 12, 'Gramy sobie w piłke', 'Piłka nożna'),
-(26, 'Tanowo', 'Radosna', '2024-04-04', '12:02:00', 15, 24, 'Gramy sobie w piłke', 'Piłka nożna'),
-(27, 'Police', 'Piaskowa', '2024-04-30', '12:12:00', 2, 4, 'Koszykówka', 'Koszykówka'),
-(28, 'Tanowo', 'Tanowska', '2024-04-19', '12:50:00', 13, 23, 'Testowe', 'Piłka nożna'),
-(29, 'Police', 'Tanowska', '2024-04-11', '01:55:00', 1, 12, 'Test dla zdjecia', 'Koszykówka');
+(30, 'Tanowo', 'Mazowiecka 13', '2024-05-03', '12:30:00', 2, 12, 'Gramy sobie w piłke', 'Piłka nożna'),
+(31, 'Tanowo', 'Radosna', '2024-04-28', '12:32:00', 1, 22, 'Testowe', 'Koszykówka'),
+(32, 'Tanowo', 'Słoneczna 1', '2024-05-03', '22:21:00', 1, 123, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies facilisis tempor. Praesent lorem risus, efficitur nec magna nec, iaculis rutrum est. Quisque dolor neque, ultricies eu vestibulum posuere, ultrices quis diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam euismod tellus lorem, vel fermentum justo cursus eget. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas et tellus in quam efficitur viverra. Vestibulum tempor eget tortor sit amet laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas libero magna, dictum in tortor id, consequat dignissim eros. Nunc nec tincidunt odio. Mauris laoreet hendrerit porta. Ut ac maximus ante, sed eleifend nunc. Pellentesque eget nisl congue, pulvinar ante ac, ultrices est.  Duis ex tellus, egestas eu odio vitae, euismod euismod purus. Integer justo metus, gravida pulvinar eros in, egestas interdum libero. Aenean tincidunt, nunc ut cursus elementum, lorem dui tincidunt tortor, ac ultrices metus velit vel massa. Fusce eget nisl et neque molestie sollicitudin. Morbi commodo felis dictum diam facilisis, nec convallis erat vehicula. Donec tellus metus, lacinia sed nisi ut, mattis finibus enim. Mauris consectetur egestas erat eu rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  Vivamus egestas lectus ut dignissim eleifend. Sed varius velit ex, at maximus sapien varius at. Suspendisse vulputate mi vel velit condimentum iaculis. Phasellus id tortor semper, pulvinar massa faucibus, dictum turpis. Mauris porta condimentum justo, eget vestibulum urna finibus sed. Morbi justo ipsum, fermentum eu scelerisque at, lobortis at erat. Nulla vel gravida lorem. Aliquam erat volutpat. Curabitur vel malesuada justo. Suspendisse ante eros, bibendum sed nisi id, dignissim pulvinar velit. Mauris blandit ultricies dolor sed suscipit. Morbi vitae ullamcorper sem. Maecenas laoreet maximus nunc non viverra.  Proin pharetra leo vel libero rutrum pharetra. Maecenas bibendum arcu eget dui tempus, vel sollicitudin ipsum sodales. Vestibulum porta laoreet massa, non rutrum justo finibus id. Aliquam iaculis, quam sit amet vestibulum malesuada, massa enim volutpat neque, eget venenatis sem velit eu nibh. Praesent fermentum a nunc nec sodales. Fusce non tempor nunc. Suspendisse nunc massa, vulputate eu odio fringilla, mattis aliquet massa. Nunc quis mi feugiat, efficitur elit vitae, aliquet libero. Phasellus id ex a urna maximus lacinia sit amet a lorem.', 'Piłka nożna');
 
 --
--- Indexes for dumped tables
+-- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `users`
+-- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -79,26 +85,26 @@ ALTER TABLE `users`
   ADD KEY `user_name` (`user_name`);
 
 --
--- Indexes for table `wydarzenia`
+-- Indeksy dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `wydarzenia`
+-- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

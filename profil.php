@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<button class="edit_button">Edytuj</button>';
         echo '</div>';
         echo '<form class="edit_about_me_form" style="display: none;" method="post">';
-        echo '<textarea name="about_me" placeholder="O mnie (maks. 120 słów)" maxlength="600">' . $row['about_me'] . '</textarea>';
+        echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600">' . $row['about_me'] . '</textarea>';
         echo '<button type="submit" name="submit">Dodaj</button>';
         echo '<button type="button" class="cancel_button">Anuluj</button>';
         echo '</form>';

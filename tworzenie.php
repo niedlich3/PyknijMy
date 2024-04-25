@@ -62,6 +62,7 @@
 		<li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: white;">Hello, <?php echo $user_data['user_name']; ?></a></li>
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
+		
 		<li class="btn" style="color: black;">
 			<a href="logout.php" style="color: black;">Logout</a>
 		</li>
@@ -69,7 +70,7 @@
 	</ul>
   </nav>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <table>
+        <table class="tabelka">
             <tr>
                 <td>Miasto:</td>
                 <td><input type="text" name="Miasto" required></td>
