@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include("connection.php");
-include("functions.php");
+include("login/connection.php");
+include("login/functions.php");
 $user_data = check_login($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyknijMy</title>
-    <link rel="stylesheet" href="styl_pyknijmy.css">
+    <link rel="stylesheet" href="css/styl_pyknijmy.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div class = "header"> 
     <nav>
-        <a href = "index.php"><img src="logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
+        <a href = "index.php"><img src="grafika/logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
 
         <ul class="nav-links">
             <li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: white;">Hello, <?php echo $user_data['user_name']; ?></a></li>
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
 
             <li class="btn" style="color: black;">
-                <a href="logout.php" style="color: black;">Logout</a>
+                <a href="login/logout.php" style="color: black;">Logout</a>
             </li>
 
         </ul>
