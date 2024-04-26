@@ -4,7 +4,7 @@ session_start();
 
 	include("connection.php");
 	include("functions.php");
-
+	
 
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
@@ -26,23 +26,28 @@ session_start();
 
 					$user_data = mysqli_fetch_assoc($result);
 					
-					if($user_data['password'] === $password)
-					{
-
-						$_SESSION['user_id'] = $user_data['user_id'];
+					
+        if (password_verify($password, $user_data['password'])) {
+            
+            $_SESSION['user_id'] = $user_data['user_id'];
 						header("Location: ../index.php");
 						die;
-					}
-				}
-			}
-			
-			echo "wrong username or password!";
-		}else
-		{
-			echo "wrong username or password!";
+        } else {
+            $_SESSION['login_error'] = "Nieprawidłowa nazwa użytkownika lub hasło.";
+            header("Location: ../login/login.php");
+            exit();
+        }
+		} else {
+        $_SESSION['login_error'] = "Nieprawidłowa nazwa użytkownika lub hasło.";
+        header("Location: ../login/login.php");
+        exit();
+		}
+		
+		
+		     }
 		}
 	}
-
+		
 ?>
 
 

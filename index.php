@@ -48,6 +48,7 @@
 	<?php 
 	include("php/wyswietlanie.php");
 	funkcja($wynik); 
+	
 	?>
 		
   </div>

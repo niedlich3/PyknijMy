@@ -10,22 +10,36 @@ session_start();
 		//something was posted
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
-
+		$hash = password_hash($password, PASSWORD_DEFAULT);
 		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
 		{
-
-			//save to database
+			
 			$user_id = random_num(20);
-			$query = "insert into users (user_id,user_name,password) values ('$user_id','$user_name','$password')";
+			$query = "SELECT * FROM users WHERE user_name = '$user_name'";
+			$result = mysqli_query($conn, $query);
+			
+		if(mysqli_num_rows($result) > 0) {
+		echo "Nazwa użytkownika już istnieje!";
+} else {
+    $query1 = "insert into users (user_id,user_name,password) values ('$user_id','$user_name','$hash')";
 
-			mysqli_query($conn, $query);
-
+			mysqli_query($conn, $query1);
+			
 			header("Location: login.php");
 			die;
-		}else
-		{
-			echo "Please enter some valid information!";
-		}
+}
+			//save to database
+			//$user_id = random_num(20);
+			//$query = "insert into users (user_id,user_name,password) values ('$user_id','$user_name','$hash')";
+
+			//mysqli_query($conn, $query);
+
+			//header("Location: login.php");
+			//die;
+		}//else
+		//{
+			//echo "Please enter some valid information!";
+		//}
 	}
 ?>
 

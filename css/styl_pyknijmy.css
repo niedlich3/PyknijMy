@@ -200,7 +200,7 @@ nav{
 	margin-top: 35px;
 	background-color: #000;
 	color: #fff;
-	
+	cursor: pointer;
 }
 .right{
 	border: 1px solid black;
