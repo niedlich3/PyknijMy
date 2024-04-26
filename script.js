@@ -2,7 +2,7 @@
             $('.zapisz').click(function(){
                 var idWydarzenia = $(this).data('wydarzenie'); 
                 $.ajax({
-                    url: 'zapisz.php',
+                    url: 'php/zapisz.php',
                     type: 'POST',
                     data: { idWydarzenia: idWydarzenia }, 
                     success: function(response){
@@ -22,7 +22,7 @@
         $('#kategorie').change(function(){
             var selectedCategory = $(this).val();
             $.ajax({
-                url: 'kategorie.php',
+                url: 'php/kategorie.php',
                 type: 'POST',
                 data: { category: selectedCategory },
                 success: function(response){

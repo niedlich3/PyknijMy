@@ -2,8 +2,8 @@
   
   session_start();
 
-  include("connection.php");
-  include("functions.php");
+  include("login/connection.php");
+  include("login/functions.php");
   $user_data = check_login($conn);
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dodawanie wydarzenia</title>
-    <link rel="stylesheet" href="styl_pyknijmy.css">
+    <link rel="stylesheet" href="css/styl_pyknijmy.css">
 </head>
 <body>
 <?php
@@ -20,41 +20,12 @@
     if (!$conn) {
         die("Błąd połączenia: " . mysqli_connect_error());
     }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $Miasto = $_POST['Miasto'];
-        $Ulica = $_POST['Ulica'];
-        $Data = $_POST['Data'];
-        $Godzina = $_POST['Godzina'];
-        $Zapisani = $_POST['Zapisani'];
-        $Max = $_POST['Max'];
-		$Opis = $_POST['Opis'];
-		$Kategoria = $_POST['Kategoria'];
-		$Zdjecia = $_POST['Zdjecia'];
-        
-        $Miasto = mysqli_real_escape_string($conn, $Miasto);
-        $Ulica = mysqli_real_escape_string($conn, $Ulica);
-        $Data = mysqli_real_escape_string($conn, $Data);
-        $Godzina = mysqli_real_escape_string($conn, $Godzina);
-        $Zapisani = mysqli_real_escape_string($conn, $Zapisani);
-        $Max = mysqli_real_escape_string($conn, $Max);
-        $Opis = mysqli_real_escape_string($conn, $Opis);
-        $Kategoria = mysqli_real_escape_string($conn, $Kategoria);
-        
-        
-        $dodawanie = "INSERT INTO wydarzenia (miasto, ulica, data, godzina, osoby_zapisane, max_osoby, opis, kategoria) VALUES ('$Miasto', '$Ulica', '$Data', '$Godzina', '$Zapisani', '$Max', '$Opis','$Kategoria')";
-        
-        if (mysqli_query($conn, $dodawanie)) {
-            echo "Wydarzenie zostało pomyślnie dodane";
-        } else {
-            echo "Błąd: " . $dodawanie . "<br>" . mysqli_error($conn);
-        }
-    }
+    include("php/dodawaniedb.php");
     mysqli_close($conn);
 ?>
     <div class = "header"> 
   <nav>
-   <a href = "index.php"><img src="logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
+   <a href = "index.php"><img src="grafika/logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
    
 
    

@@ -30,7 +30,7 @@ session_start();
 					{
 
 						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: index.php");
+						header("Location: ../index.php");
 						die;
 					}
 				}
@@ -49,7 +49,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-<a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
+<a href = "index.php"><img src="../grafika/logopyknijmy.png" class="logo"></a>
 	<title>Logowanie</title>
 </head>
 <body>

@@ -33,7 +33,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-<a href = "index.php"><img src="logopyknijmy.png" class="logo"></a>
+<a href = "index.php"><img src="../grafika/logopyknijmy.png" class="logo"></a>
 	<title>Rejestracja</title>
 </head>
 <body>
