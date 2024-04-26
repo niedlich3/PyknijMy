@@ -28,7 +28,7 @@
 		<li><a href="wyszukiwanie.php">Wyszukaj wydarzenia</a></li>
 		
 		<li class="btn" style="color: black;">
-			<a href="logout.php" style="color: black;">Logout</a>
+			<a href="login/logout.php" style="color: black;">Logout</a>
 		</li>
 
 	</ul>
