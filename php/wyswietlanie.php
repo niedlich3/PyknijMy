@@ -36,7 +36,7 @@ $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
 			 echo '</div>';
 			 echo '<div class="wwww">' . 'Data wydarzenia: ', $row['data'], ' ';
 			 echo '</div>';
-			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '">';
+			 echo '<button class="zapisz" data-wydarzenie="' . $row['id'] . '"onclick="replaceButton(this)">';
 			 echo 'Zapisz się';
 			 echo '</button>';
 			 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';

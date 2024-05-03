@@ -201,6 +201,9 @@ nav{
 	background-color: #000;
 	color: #fff;
 	cursor: pointer;
+	height: 50px;
+	width:50px;
+	border-radius: 10px;
 }
 .right{
 	border: 1px solid black;
@@ -213,11 +216,7 @@ nav{
 	font-size: 25px;
 	border-radius: 10px;
 }
-.zapisz{
-	height: 50px;
-	width:50px;
-	border-radius: 10px;
-}
+
 .zdjecie_tlo{
 	width: 100vw;
 	height: 100vh;
@@ -287,4 +286,25 @@ font-size: 48px;
 }
 .tabelka{
 	color: white;
+	border-radius: 20px;
+
+	
+}
+.tabelka td {
+	height: 2vh;
+	
+	width: 20vw;
+}
+.Kategoria{
+
+}
+.wydarzenie{
+	float:right;
+	margin-top: 35px;
+	background-color: #000;
+	color: #fff;
+	cursor: pointer;
+	height: 50px;
+	width:50px;
+	border-radius: 10px;
 }

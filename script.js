@@ -33,3 +33,14 @@
         });
     });
 	
+	 // Funkcja, która usuwa przycisk i tworzy nowy po kliknięciu
+   function replaceButton(clickedButton) {
+    var oldButton = clickedButton;
+    var newButton = document.createElement("button");
+	 newButton.className = "wydarzenie"; // Dodanie klasy do nowego przycisku
+    newButton.innerHTML = "Nowy przycisk";
+    newButton.onclick = function() {
+        replaceButton(newButton);
+    };
+    oldButton.parentNode.replaceChild(newButton, oldButton);
+}

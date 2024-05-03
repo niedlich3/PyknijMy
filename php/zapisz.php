@@ -35,8 +35,7 @@
         echo "Wydarzenie osiągneło maksymalną liczbę osób";
     }
 
-
-    
+	
 	$conn->close();
 }
 ?>
