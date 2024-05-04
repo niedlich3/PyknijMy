@@ -1,17 +1,42 @@
- $(document).ready(function(){ //zapisanie
-            $('.zapisz').click(function(){
-                var idWydarzenia = $(this).data('wydarzenie'); 
-                $.ajax({
-                    url: 'php/zapisz.php',
-                    type: 'POST',
-                    data: { idWydarzenia: idWydarzenia }, 
-                    success: function(response){
-                       
-                        location.reload(); 
-                    }
-                });
-            });
-        });
+function replaceButton(button) {
+    var idWydarzenia = $(button).data('wydarzenie');
+    $.ajax({
+        url: 'php/zapisz.php',
+        type: 'POST',
+        data: { idWydarzenia: idWydarzenia },
+        success: function(response){
+            console.log('Otrzymano odpowiedź z serwera:', response);
+            if (response === "max") {
+                // Wydarzenie osiągnęło maksymalną liczbę osób
+                console.log("Wydarzenie osiągnęło maksymalną liczbę osób");
+            } else {
+                // Zaktualizuj liczbę osób zapisanych na stronie
+                var osobyZapisane = parseInt(response);
+                console.log('Liczba osób zapisanych:', osobyZapisane);
+                $('#osoby-zapisane-' + idWydarzenia).html('<b>Osoby zapisane:</b> ' + osobyZapisane);
+
+                
+                // Zmiana tekstu przycisku na "Zapisano się"
+                $(button).text('Zapisano się');
+                $(button).prop('disabled', true); // Wyłączenie możliwości ponownego kliknięcia
+            }
+        },
+        error: function(xhr, status, error) {
+            // Obsługa błędu
+            console.error('Błąd AJAX:', xhr.responseText);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
 		
 		$(document).ready(function() { //kategorie
  	 		 $('#kategorie').val('');
@@ -33,14 +58,3 @@
         });
     });
 	
-	 // Funkcja, która usuwa przycisk i tworzy nowy po kliknięciu
-   function replaceButton(clickedButton) {
-    var oldButton = clickedButton;
-    var newButton = document.createElement("button");
-	 newButton.className = "wydarzenie"; // Dodanie klasy do nowego przycisku
-    newButton.innerHTML = "Nowy przycisk";
-    newButton.onclick = function() {
-        replaceButton(newButton);
-    };
-    oldButton.parentNode.replaceChild(newButton, oldButton);
-}
