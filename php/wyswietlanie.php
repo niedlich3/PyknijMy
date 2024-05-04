@@ -43,10 +43,10 @@ $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
 			 echo '</div>';
 			 echo '<div class="rrrr">' . 'Wymagana ilość osób: ', $row['max_osoby'], ' ';
 			 echo '</div>';
-			 echo '<div class="eeee">' . '<b>Osoby zapisane: </b>', $row['osoby_zapisane'], ' ';
+			 echo '<div  id="osoby-zapisane-' . $row['id'] . '" class="eeee">';
+			 echo '<b>Osoby zapisane: </b>' . $row['osoby_zapisane'];
 			 echo '</div>';
 			 echo '</div>';
-			 
 			 echo '</div>';
 		 }
 	 }

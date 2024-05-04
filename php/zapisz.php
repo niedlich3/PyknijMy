@@ -20,13 +20,24 @@
     
     $zapis = "UPDATE `wydarzenia` SET `osoby_zapisane`= `osoby_zapisane` + 1 WHERE id = $idWydarzenia";
 
-    if (mysqli_query($conn, $zapis)) {
-         echo "Pomyślnie się zapisałeś";
+    $max_osoby = "SELECT max_osoby, osoby_zapisane FROM wydarzenia WHERE id = $idWydarzenia";
+    $result = mysqli_query($conn, $max_osoby);
+    $row = mysqli_fetch_assoc($result);
+    $max_osoby = $row['max_osoby'];
+    $osoby_zapisane = $row['osoby_zapisane'];
+    
+    if ($osoby_zapisane < $max_osoby) {
+        if (mysqli_query($conn, $zapis)) {
+            echo $osoby_zapisane + 1; // Zwróć aktualną liczbę osób zapisanych
+        } else {
+            echo "Błąd: " . $zapis . "<br>" . mysqli_error($conn);
+        }
     } else {
-        echo "Błąd: " . $zapis . "<br>" . mysqli_error($conn);
+        echo "max"; // Oznacz, że osiągnięto maksymalną liczbę osób
     }
+    
 
-	$del = "DELETE FROM wydarzenia WHERE osoby_zapisane = max_osoby";
+	$del = "DELETE FROM wydarzenia WHERE osoby_zapisane > max_osoby";
 
     $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
 
