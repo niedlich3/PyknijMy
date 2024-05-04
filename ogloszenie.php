@@ -21,7 +21,6 @@
    <a href = "index.php"><img src="grafika/logopyknijmy.png" class="logo" style="margin-left: 10%;"></a>
    
 
-   
     <ul class="nav-links">
 		<li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: white;">Hello, <?php echo $user_data['user_name']; ?></a></li>
 		<li><a href="tworzenie.php">Stwórz wydarzenie</a></li>
@@ -32,8 +31,7 @@
 		</li>
 
 	</ul>
-  </nav>
-  
+  </nav>  
 <?php
 	 
 	 
