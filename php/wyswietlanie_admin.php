@@ -1,15 +1,13 @@
 <?php
 include("login/connection.php");
 $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
-
-
-
-
-
 	 
 	 if(mysqli_query($conn, $del_time)){
         echo "";
     }
+	
+	
+
 
 	$wynik = mysqli_query($conn, "SELECT * from wydarzenia ORDER BY data, godzina");
 	
@@ -46,6 +44,7 @@ $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
 			 echo '</button>';
 			 echo '<div class="tttt">' . 'Godzina wydarzenia: ', $row['godzina'], ' ';
 			 echo '</div>';
+			
 			 echo '<div class="rrrr">' . 'Wymagana ilość osób: ', $row['max_osoby'], ' ';
 			 echo '</div>';
 			 echo '<div  id="osoby-zapisane-' . $row['id'] . '" class="eeee">';
@@ -55,4 +54,5 @@ $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
 			 echo '</div>';
 		 }
 	 }
+
 ?>
