@@ -1,11 +1,6 @@
 <?php
 include("login/connection.php");
 $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
-
-
-
-
-
 	 
 	 if(mysqli_query($conn, $del_time)){
         echo "";

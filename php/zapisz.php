@@ -37,7 +37,7 @@
     }
     
 
-	$del = "DELETE FROM wydarzenia WHERE osoby_zapisane > max_osoby";
+	$del = "DELETE FROM wydarzenia WHERE osoby_zapisane = max_osoby";
 
     $del_time = "DELETE FROM wydarzenia WHERE data < CURRENT_DATE()";
 

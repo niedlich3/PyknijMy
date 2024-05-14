@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <title>Dodawanie wydarzenia</title>
     <link rel="stylesheet" href="css/styl_pyknijmy.css">
+	<link rel="icon" type="image/png" href="grafika/ikonka_pyknijmy.png">
 </head>
 <body>
 <?php
@@ -44,11 +45,11 @@
         <table class="tabelka">
             <tr>
                 <td>Miasto:</td>
-                <td><input type="text" name="Miasto" required></td>
+                <td><input type="text" name="Miasto" pattern="[A-Za-z ]+" required></td>
             </tr>
             <tr>
                 <td>Ulica:</td>
-                <td><input type="text" name="Ulica" required></td>
+                <td><input type="text" name="Ulica" pattern="[A-Za-z]+ ?(\d{1,})?" required></td>
             </tr>
             <tr>
                 <td>Data:</td>
@@ -60,11 +61,11 @@
             </tr>
             <tr>
                 <td>Liczba osób zapisanych:</td>
-                <td><input type="number" name="Zapisani" required></td>
+                <td><input type="number" name="Zapisani"  min="0" required></td>
             </tr>
             <tr>
                 <td>Maksymalna Liczba osób:</td>
-                <td><input type="number" name="Max" required></td>
+                <td><input type="number" name="Max" min="1" required></td>
             </tr>
 			<tr>
                 <td>Opis wydarzenia:</td>
