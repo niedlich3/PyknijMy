@@ -1,0 +1,32 @@
+{
+    "short_name": "PyknijMy",
+    "name": "PyknijMy",
+    "theme_color": "#000000",
+    "background_color": "#fff600",
+    "display": "fullscreen",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "grafika/ikonka_pyknijmy.png",
+        "type": "image/png",
+        "sizes": "512x512"
+        
+      },
+      {
+        "src": "grafika/logopyknijmy.png",
+        "type": "image/png",
+        "sizes": "144x144"
+        
+      },
+      {
+        "src": "grafika/logopyknijmy.png",
+        "type": "image/png",
+        "sizes": "144x144",
+        "purpose": "maskable"
+        
+      }
+    ],
+    "purpose": "any"
+  }
+  
