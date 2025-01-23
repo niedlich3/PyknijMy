@@ -153,3 +153,8 @@ footer {
     margin-right: 13vw;
 
 }
+.events{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
