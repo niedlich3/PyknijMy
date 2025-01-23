@@ -143,6 +143,7 @@ footer {
 }
 
 .uslugi{
+	margin-top: 5vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Dostosowuje szerokość kolumny */
     gap: 3vh; /* Ustawia odstęp zarówno poziomy, jak i pionowy */
