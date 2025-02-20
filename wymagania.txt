@@ -1,0 +1,116 @@
+1. Rejestracja i logowanie
+Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na stronie
+
+-Logowanie: Dostęp do aplikacji poprzez logowanie sie na stworzone wcześniej konto poprzez formularz rejestracji
+
+-Zarządzanie profilem: Użytkownik powinien móc edytować swoje dane, zdjęcie profilowe i status.
+
+2. Tworzenie wydarzeń
+-Kategorie wydarzeń:
+
+-Sportowe: np. piłka nożna, koszykówka, bieganie.
+
+-Naukowe: np. fizyka, matematyka, chemia, biologia.
+
+-Rozrywkowe: np. koncerty, imprezy, gry planszowe, kino.
+
+-Tworzenie wydarzenia:
+
+-Tytuł wydarzenia.
+
+-Opis wydarzenia.
+
+-Data i godzina rozpoczęcia i zakończenia.
+
+-Lokalizacja (adres wydarzenia lub wybór miejsca na mapie).
+
+-Wybór kategorii (sportowe, naukowe, rozrywkowe).
+
+-Dodanie tagów tematycznych (np. "mecz", "nauka", "relaks", "impreza").
+
+-Wybór dyscypliny / przedmiotu:
+
+-W przypadku wydarzenia sportowego użytkownik wybiera konkretną dyscyplinę sportową.
+
+-W przypadku wydarzenia naukowego wybór przedmiotu szkolnego.
+
+-W przypadku wydarzenia rozrywkowego wybór aktywności (np. gry, koncerty, filmy).
+
+-Zarządzanie wydarzeniem: Możliwość edytowania i usuwania wydarzenia przez twórcę.
+
+3. Zarządzanie uczestnikami
+-Zgłaszanie się na wydarzenia:
+
+-Użytkownicy mogą zapisać się na wydarzenie jako uczestnicy.
+
+-Możliwość anulowania udziału.
+
+-Lista uczestników:
+
+-Użytkownik może zobaczyć listę osób zapisanych na wydarzenie.
+
+-Opcja dodania użytkowników do wydarzenia jako organizator.
+
+-Limit uczestników:
+
+-Twórca wydarzenia może ustalić limit osób, które mogą się zapisać.
+
+4. Czat w wydarzeniu // ADDON
+-Własny czat dla każdego wydarzenia:
+
+-Tworzenie indywidualnego czatu tekstowego dla każdego wydarzenia.
+
+-Czat dostępny dla wszystkich zapisanych uczestników wydarzenia.
+
+-Opcja wiadomości prywatnych: Umożliwienie uczestnikom wymiany wiadomości bezpośrednich między sobą.
+
+-Emotikony i media: Możliwość wysyłania emotikonów, obrazków, plików multimedialnych i dokumentów.
+
+-Powiadomienia o nowych wiadomościach: Użytkownicy otrzymują powiadomienia o nowych wiadomościach w czacie wydarzenia.
+
+5. Znajomi i interakcje społecznościowe
+-Dodawanie znajomych: Użytkownicy mogą wyszukiwać innych użytkowników i dodawać ich do swojej listy znajomych.
+
+-Zarządzanie znajomymi: Możliwość akceptowania lub odrzucania zaproszeń do znajomych oraz usuwania użytkowników ze znajomych.
+
+-Wydarzenia wspólne: Użytkownicy mogą zapraszać swoich znajomych do udziału w wydarzeniach.
+
+-Powiadomienia o aktywności znajomych: Użytkownicy będą informowani, gdy ich znajomi dołączą do wydarzenia lub utworzą nowe wydarzenie.
+
+6. Wyszukiwanie wydarzeń
+-Filtrowanie wydarzeń: Możliwość wyszukiwania wydarzeń według kategorii (sportowe, naukowe, rozrywkowe), daty, lokalizacji i tematyki.
+
+-Szukaj po nazwie lub tagu: Możliwość wyszukiwania wydarzeń po nazwie lub przypisanych tagach.
+
+-Sortowanie: Możliwość sortowania wydarzeń według daty, popularności
+
+7. Powiadomienia // ADDON
+-Powiadomienia push: Otrzymywanie powiadomień o nadchodzących wydarzeniach, zaproszeniach na wydarzenia, nowych wiadomościach w czacie i aktualizacjach w wydarzeniach.
+
+-E-mail/SMS: Powiadomienia o zapisaniu się na wydarzenie, zmianach w harmonogramie itp.
+
+8. Interfejs użytkownika (UI) i doświadczenie (UX)
+-Responsywny design: Aplikacja powinna być zoptymalizowana pod różne urządzenia (komputery, tablety, telefony).
+
+-Przejrzystość: Intuicyjny i łatwy w nawigacji interfejs.
+
+-Dostępność: Możliwość dostosowania czcionki i kolorów, tryb nocny.
+
+9. Bezpieczeństwo i prywatność
+-Bezpieczne dane użytkowników: Przechowywanie danych osobowych zgodnie z RODO i innymi regulacjami dotyczącymi ochrony prywatności.
+
+-Zarządzanie dostępem: Użytkownicy mogą kontrolować, kto ma dostęp do ich danych i informacji o wydarzeniach.
+
+-Moderacja treści: Monitorowanie i moderowanie czatów i treści przesyłanych przez użytkowników w celu zapobiegania nadużyciom.
+
+10. Administrator i moderacja
+-Role administratorów: Administratorzy aplikacji mają możliwość zarządzania użytkownikami, wydarzeniami oraz interakcjami w aplikacji.
+
+-Zgłaszanie nieodpowiednich treści: Użytkownicy mogą zgłaszać nieodpowiednie treści (np. obraźliwe komentarze, nielegalne działania).
+
+11. Integracje z innymi usługami // ADDON
+-Mapy: Integracja z mapami (np. Google Maps) w celu wyświetlania lokalizacji wydarzeń.
+
+-Kalendarz: Możliwość synchronizacji wydarzeń z kalendarzem użytkownika.
+
+-Mediów społecznościowych: Możliwość udostępniania wydarzeń na platformach społecznościowych (Facebook, Instagram, Twitter).

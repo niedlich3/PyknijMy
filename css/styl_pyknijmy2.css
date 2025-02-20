@@ -158,3 +158,13 @@ footer {
     justify-content: center;
     align-items: center;
 }
+.button-sport{
+    border: 1px solid rgb(214, 162, 113);
+    width: 7%;
+    height: 10%;
+    background-color: rgb(214, 162, 113);
+}
+.tr-t-s{
+    text-decoration: none;
+    color: black;
+}
