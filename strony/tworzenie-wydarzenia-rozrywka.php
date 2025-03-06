@@ -54,39 +54,27 @@
                 <textarea id="opis" name="opis" maxlength="255" placeholder="Napisz opis"></textarea><br>
                 <p id="opisCount">Pozostało: 255 znaków</p>
 
-                <label for="sports">Sporty:</label><br>
-                <select id="sports" name="sports" required>
-                    <option value="snorkeling">Snorkeling</option>
-                    <option value="taekwondo">Taekwondo</option>
-                    <option value="badminton">Badminton</option>
-                    <option value="rugby">Rugby</option>
-                    <option value="nurkowanie">Nurkowanie</option>
-                    <option value="morsowanie">Morsowanie</option>
-                    <option value="padel">Padel</option>
-                    <option value="futbol_american">Futbol Amerykański</option>
-                    <option value="muay_thai">Muay Thai</option>
-                    <option value="pilka_nozna">Piłka nożna</option>
-                    <option value="hokej">Hokej</option>
-                    <option value="unihokej">Unihokej</option>
-                    <option value="crossfit">CrossFit</option>
-                    <option value="kalistenika">Kalistenika</option>
-                    <option value="outdoor_survival">Outdoor / Survival</option>
-                    <option value="myslistwo">Myślistwo</option>
-                    <option value="sport_z_psem">Sport z Psem</option>
-                    <option value="bilard">Bilard</option>
-                    <option value="trail">Trail</option>
-                    <option value="boks">Boks</option>
-                    <option value="rowery">Rowery</option>
-                    <option value="wedkarstwo">Wędkarstwo</option>
-                    <option value="siatkowka_plazowa">Siatkówka plażowa</option>
-                    <option value="plywanie">Pływanie</option>
-                    <option value="szermierka">Szermierka</option>
-                    <option value="balet">Balet, taniec klasyczny</option>
-                    <option value="hokej_na_trawie">Hokej na trawie</option>
-                    <option value="narciarstwo_biegowe">Narciarstwo biegowe</option>
-                    <option value="karate">Karate</option>
-                    <option value="biegi_ocr">Biegi OCR</option>
-                    <option value="pilka_reczna">Piłka ręczna</option>
+                <label for="rozrywkas">Sporty:</label><br>
+                <select id="rozrywkas" name="rozrywkas" required>
+                    <option value="kino">Wyjście do kina</option>
+                    <option value="planszowki">Spotkanie przy planszówkach</option>
+                    <option value="gotowanie">Wspólne gotowanie</option>
+                    <option value="spacer">Spacer po mieście</option>
+                    <option value="taniec">Zajęcia taneczne</option>
+                    <option value="gry">Wieczór gier komputerowych</option>
+                    <option value="karaoke">Karaoke z przyjaciółmi</option>
+                    <option value="drinki">Wyjście na drinka</option>
+                    <option value="piknik">Piknik w parku</option>
+                    <option value="mecz">Wspólne oglądanie meczu</option>
+                    <option value="escaperoom">Escape room</option>
+                    <option value="rowery">Wspólna wycieczka rowerowa</option>
+                    <option value="kawiarnia">Spotkanie w kawiarni</option>
+                    <option value="koncert">Wyprawa na koncert</option>
+                    <option value="muzeum">Wizyta w muzeum lub galerii</option>
+                    <option value="warsztaty">Warsztaty artystyczne</option>
+                    <option value="joga">Zajęcia jogi lub medytacji</option>
+                    <option value="impreza">Spontaniczne wyjście na imprezę</option>
+                    <option value="fotografia">Zajęcia z fotografii</option>
                 </select><br><br>
                 <button type="submit">Stwórz Wydarzenie</button><br>
             </form>
