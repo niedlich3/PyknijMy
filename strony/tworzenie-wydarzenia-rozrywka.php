@@ -54,7 +54,7 @@
                 <textarea id="opis" name="opis" maxlength="255" placeholder="Napisz opis"></textarea><br>
                 <p id="opisCount">Pozostało: 255 znaków</p>
 
-                <label for="rozrywkas">Sporty:</label><br>
+                <label for="rozrywkas">Wybierz wydarzenie rozrywkowe:</label><br>
                 <select id="rozrywkas" name="rozrywkas" required>
                     <option value="kino">Wyjście do kina</option>
                     <option value="planszowki">Spotkanie przy planszówkach</option>
@@ -76,6 +76,7 @@
                     <option value="impreza">Spontaniczne wyjście na imprezę</option>
                     <option value="fotografia">Zajęcia z fotografii</option>
                 </select><br><br>
+                
                 <button type="submit">Stwórz Wydarzenie</button><br>
             </form>
             <script src="znaki.js"></script>
