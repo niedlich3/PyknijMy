@@ -21,7 +21,7 @@ document.querySelector("form").addEventListener("submit", async function(event) 
     const formData = new FormData(this);
     const data = Object.fromEntries(formData.entries());
 
-    const response = await fetch('http://localhost:3000/add-event', {
+    const response = await fetch('http://localhost:3000/dodajWydarzenie', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

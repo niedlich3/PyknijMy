@@ -58,9 +58,16 @@
         WYDARZENIA
     </section>
     <li class="button-sport">
-                        <a class="tr-t-s" href="tworzenie-wydarzenia-sport.php">Dołącz teraz</a>
-                    </li>
+            <a class="tr-t-s" href="tworzenie-wydarzenia-sport.php">Dołącz teraz</a>
+    </li>
    
+    <div id="wydarzeniaSportowe">
+        <h2>Wydarzenia Sportowe</h2>
+        <ul id="listaSportowa"></ul>
+    </div>
+
+    <script src="../wyswietlanie.js"></script>
+
 </main>
 <footer>
 		<div class = "footerContainer">

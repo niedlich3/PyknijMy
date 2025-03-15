@@ -90,7 +90,6 @@
                 </select><br><br>
                 <button type="submit">Stwórz Wydarzenie</button><br>
             </form>
-            <script src="znaki.js"></script>
         </section>
     </main>
     <footer>
@@ -124,7 +123,7 @@
 
                 // Wysłanie danych do serwera
                 $.ajax({
-                    url: "http://localhost:3000/dodajWydarzenie", // Zmienna, jeśli adres serwera się zmienia
+                    url: "http://localhost:3000/dodajWydarzenieSportowe", // Zmienna, jeśli adres serwera się zmienia
                     type: "POST",
                     contentType: "application/json",
                     data: JSON.stringify(eventData),

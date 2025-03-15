@@ -47,7 +47,7 @@
     <main> 
         
     <section class = "tworzenie-tabelka">
-    <form>
+    <form id="NaukaData">
         <label for="nazwa">Nazwa wydarzenia:</label><br>
         <input type="text" id="nazwa" name="nazwa" required placeholder="Wpisz nazwę"><br>
        
@@ -167,5 +167,37 @@
 		 </div>
 		</footer>
 		<script src="script.js"></script>
+        <script>
+        // Funkcja do obsługi formularza
+        $(document).ready(function() {
+            $("#NaukaData").on("submit", function(event) {
+                event.preventDefault(); // Zapobiega domyślnej akcji wysłania formularza
+
+                // Pobieramy dane z formularza
+                const NaukaeventData = {
+                    nazwa: $("#nazwa").val(),
+                    ilosc: $("#ilosc").val(),
+                    opis: $("#opis").val(),
+                    przedmioty: $("#przedmioty").val() || [], // Upewnia się, że jest to tablica
+                };
+
+                // Wysłanie danych do serwera
+                $.ajax({
+                    url: "http://localhost:3000/dodajWydarzenieEdukacyjne", // Zmienna, jeśli adres serwera się zmienia
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(NaukaeventData),
+                    success: function(response) {
+                        alert("Wydarzenie zostało dodane!");
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Błąd przy dodawaniu wydarzenia!");
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

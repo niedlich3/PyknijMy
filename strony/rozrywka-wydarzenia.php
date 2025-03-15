@@ -45,9 +45,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <main>
-<li class="button-sport">
-                        <a class="tr-t-s" href="tworzenie-wydarzenia-rozrywka.php">Dołącz teraz</a>
-                    </li>
+    <section class="events">
+        WYDARZENIA
+    </section>
+    <li class="button-sport">
+            <a class="tr-t-s" href="tworzenie-wydarzenia-rozrywka.php">Dołącz teraz</a>
+    </li>
 </main>
 <footer>
 		<div class = "footerContainer">

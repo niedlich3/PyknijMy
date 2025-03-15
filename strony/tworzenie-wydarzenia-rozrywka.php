@@ -43,7 +43,7 @@
     </nav>
     <main> 
         <section class="tworzenie-tabelka">
-            <form id="eventForm">
+            <form id="EnteventForm">
                 <label for="nazwa">Nazwa wydarzenia:</label><br>
                 <input type="text" id="nazwa" name="nazwa" required placeholder="Wpisz nazwę"><br>
                
@@ -54,7 +54,7 @@
                 <textarea id="opis" name="opis" maxlength="255" placeholder="Napisz opis"></textarea><br>
                 <p id="opisCount">Pozostało: 255 znaków</p>
 
-                <label for="rozrywkas">Wybierz wydarzenie rozrywkowe:</label><br>
+                <label for="rozrywkas">Sporty:</label><br>
                 <select id="rozrywkas" name="rozrywkas" required>
                     <option value="kino">Wyjście do kina</option>
                     <option value="planszowki">Spotkanie przy planszówkach</option>
@@ -76,7 +76,6 @@
                     <option value="impreza">Spontaniczne wyjście na imprezę</option>
                     <option value="fotografia">Zajęcia z fotografii</option>
                 </select><br><br>
-                
                 <button type="submit">Stwórz Wydarzenie</button><br>
             </form>
             <script src="znaki.js"></script>
@@ -100,23 +99,23 @@
     <script>
         // Funkcja do obsługi formularza
         $(document).ready(function() {
-            $("#eventForm").on("submit", function(event) {
+            $("#EnteventForm").on("submit", function(event) {
                 event.preventDefault(); // Zapobiega domyślnej akcji wysłania formularza
 
                 // Pobieramy dane z formularza
-                const eventData = {
+                const EnteventData = {
                     nazwa: $("#nazwa").val(),
                     ilosc: $("#ilosc").val(),
                     opis: $("#opis").val(),
-                    sports: $("#sports").val()
+                    rozrywka: $("#rozrywkas").val()
                 };
 
                 // Wysłanie danych do serwera
                 $.ajax({
-                    url: "http://localhost:3000/dodajWydarzenie", // Zmienna, jeśli adres serwera się zmienia
+                    url: "http://localhost:3000/dodajWydarzenieRozrywka", // Zmienna, jeśli adres serwera się zmienia
                     type: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify(eventData),
+                    data: JSON.stringify(EnteventData),
                     success: function(response) {
                         alert("Wydarzenie zostało dodane!");
                         console.log(response);
