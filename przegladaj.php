@@ -26,14 +26,20 @@
         <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
     <section class="hero">
-        <div class="hero-text">
-            <h1>Łączymy ludzi</h1>
-            <h3>poprzez wspólne pasje</h3>
-            <a href="przegladaj.php"><button>Przeglądaj wydarzenia</button></a>
-        </div>
-        <div class="hero-image">
-            <img src="grafika/mainphoto.jpg" alt="Główne zdjęcie">
-        </div>
+    <div class="hero-content">
+        <h1 class="wyb">Wybierz kategorię wydarzenia:</h1>
+        <div class="uslugi">
+            <div class="image-container">
+            <a href ="strony/sport-wydarzenia.php"> <img src="grafika/sport1.png" alt="1" class="img-fluid"></a>
+            </div>
+            <div class="image-container">
+                <a href="strony/rozrywka-wydarzenia.php"> <img src="grafika/rozrywka1.png" alt="3" class="img-fluid"></a>
+            </div>
+            <div class="image-container">
+            <a href="strony/nauka-wydarzenia.php"> <img src="grafika/nauka1.png" alt="2" class="img-fluid"></a>
+            </div>
+    </div>
+    </div>
     </section>
 </body>
 </html>
