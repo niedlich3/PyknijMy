@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#000000"/>
-	<title>PyknijMy</title>
-	<link rel="icon" type="image/png" href="grafika/ikonka_pyknijmy.png">
-	<link rel="stylesheet" href="css/styl_pyknijmy3.css">
-	<link rel="manifest" href="manifest.json">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyszukaj wydarzenia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3e8ff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 360px;
+            background: #f3e8ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .category {
+            background: #e9d5ff;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .subcategory {
+            padding-left: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <header>
-       <a href="indexnowy.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
-        <nav class="nav-links">
-            <a href="przegladaj.php">Przeglądaj</a>
-            <a href="#">Dodaj</a>
-            <a href="#">O nas</a>
-        </nav>
-        <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
-    </header>
-    <section class="heroprz">
-    <div class="container" id="scrollbar4">
+    <div class="container">
         <div class="header">
             <i class="fas fa-bars"></i>
-            <span>Przeglądaj wydarzenia</span>
+            <span>Wyszukaj wydarzenia</span>
             <i class="fas fa-search"></i>
         </div>
-</br>
+        
         <div class="filters">
             <span>Dodaj Filtry:</span>
             <i class="fas fa-plus"></i>
@@ -131,6 +160,5 @@
             checkbox.checked = !checkbox.checked;
         }
     </script>
-    </section>
 </body>
 </html>

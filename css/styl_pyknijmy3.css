@@ -200,4 +200,62 @@ header {
     color: black;
 }
 
+/*checkbox przegladaj*/
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.category {
+    background: #e9d5ff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.subcategory {
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    display: none;
+}
+.container {
+    width: 360px;
+    background: #f3e8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 20vw;
+    height: 70vh;
+    overflow: auto;
+    
+}
+#scrollbar4::-webkit-scrollbar {
+    width: 10px;
+}
+
+#scrollbar4::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+}
+
+#scrollbar4::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border: 2px solid #c9c9c9;
+    border-radius: 5px;
+}
+.heroprz{
+    display: flex;
+    background: #ffeb3b;
+    padding: 20px;
+    justify-content: space-between;
+    min-height: 100vh;
+}
 
