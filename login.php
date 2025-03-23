@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-       <a href="indexnowy.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
+       <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="#">Przeglądaj</a>
             <a href="#">Dodaj</a>

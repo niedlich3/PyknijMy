@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-       <a href="indexnowy.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
+       <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="przegladaj.php">Przeglądaj</a>
             <a href="#">Dodaj</a>
@@ -39,7 +39,7 @@
 
         <div class="category" onclick="toggleSubcategories('sport')">
             <span>Sport</span>
-            <input type="checkbox" id="sport-checkbox">
+            <input type="checkbox" id="sport-checkbox" value="Sport">
         </div>
         <div class="subcategory sport">
             <span>Piłka nożna</span>
@@ -64,7 +64,7 @@
         
         <div class="category" onclick="toggleSubcategories('nauka')">
             <span>Nauka</span>
-            <input type="checkbox" id="nauka-checkbox">
+            <input type="checkbox" id="nauka-checkbox" value="Nauka">
         </div>
         <div class="subcategory nauka">
             <span>Matematyka</span>
@@ -120,7 +120,15 @@
             <input type="checkbox">
         </div>
     </div>
-
+    <div>
+        <h2>Wydarzenia</h2>
+        <ul id="lista"></ul>
+    </div>
+    <div>
+    </div>
+    <div >  
+    </div>
+ 
     <script>
         function toggleSubcategories(category) {
             let subcategories = document.querySelectorAll('.' + category);
@@ -133,4 +141,5 @@
     </script>
     </section>
 </body>
+<script src="wyswietlanie.js"></script>
 </html>

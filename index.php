@@ -19,22 +19,21 @@
     <header>
        <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
-            <a href="#">Przeglądaj</a>
+            <a href="przegladaj.php">Przeglądaj</a>
             <a href="#">Dodaj</a>
             <a href="#">O nas</a>
         </nav>
         <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
     <section class="hero">
-        <section class="rej">
-            <form>
-                <label>Login</br><input type="text" placeholder="Podaj login"></label></br></br>
-                <label>E-mail</br><input type="email" placeholder="Podaj email"></label></br></br>
-                <label>Hasło</br><input type="password" placeholder="Podaj hasło"></label></br></br>
-                <label>Powtórz hasło</br><input type="password" placeholder="Powtórz hasło"></label></br></br>
-                <button type="submit" class="guzik1">Stwórz konto</button></br></br>
-            </form>
-        `</section>
+        <div class="hero-text">
+            <h1>Łączymy ludzi</h1>
+            <h3>poprzez wspólne pasje</h3>
+            <a href="przegladaj.php"><button>Przeglądaj wydarzenia</button></a>
+        </div>
+        <div class="hero-image">
+            <img src="grafika/mainphoto.jpg" alt="Główne zdjęcie">
+        </div>
     </section>
 </body>
 </html>

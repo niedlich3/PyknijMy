@@ -61,14 +61,14 @@ app.post('/dodajWydarzenieEdukacyjne', async (req, res) => {
 app.post('/dodajWydarzenieRozrywka', async (req, res) => {
     console.log("Otrzymane dane (Rozrywka):", req.body);
     try {
-        const { nazwa, ilosc, opis, rozrywkas } = req.body;
+        const { nazwa, ilosc, opis, rozrywka } = req.body;
 
         // Tworzenie nowego wydarzenia sportowego
         const noweWydarzenieRozrywka = new EntertainmentEvent({
             nazwa,
             ilosc: Number(ilosc),
             opis,
-            rozrywkas
+            rozrywka
         });
 
         // Zapisanie wydarzenia sportowego do bazy
