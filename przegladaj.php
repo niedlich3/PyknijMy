@@ -37,10 +37,10 @@
             <i class="fas fa-plus"></i>
         </div>
 
-        <div class="category" onclick="toggleSubcategories('sport')">
-            <span>Sport</span>
-            <input type="checkbox" id="sport-checkbox" value="Sport">
-        </div>
+        <div class="category" onclick="toggleSubcategories(event, 'sport')">
+    <span>Sport</span>
+    <input type="checkbox" id="sport-checkbox" value="Sport" onclick="event.stopPropagation(); toggleSubcategories(event, 'sport');">
+</div>
         <div class="subcategory sport">
             <span>Piłka nożna</span>
             <input type="checkbox">
@@ -62,10 +62,11 @@
             <input type="checkbox">
         </div>
         
-        <div class="category" onclick="toggleSubcategories('nauka')">
-            <span>Nauka</span>
-            <input type="checkbox" id="nauka-checkbox" value="Nauka">
-        </div>
+        <div class="category" onclick="toggleSubcategories(event, 'nauka')">
+    <span>Nauka</span>
+    <input type="checkbox" id="nauka-checkbox" value="Nauka" onclick="event.stopPropagation(); toggleSubcategories(event, 'nauka');">
+</div>
+
         <div class="subcategory nauka">
             <span>Matematyka</span>
             <input type="checkbox">
@@ -91,10 +92,10 @@
             <input type="checkbox">
         </div>
         
-        <div class="category" onclick="toggleSubcategories('rozrywka')">
-            <span>Rozrywka</span>
-            <input type="checkbox" id="rozrywka-checkbox">
-        </div>
+        <div class="category" onclick="toggleSubcategories(event, 'rozrywka')">
+    <span>Rozrywka</span>
+    <input type="checkbox" id="rozrywka-checkbox" onclick="event.stopPropagation(); toggleSubcategories(event, 'rozrywka');">
+</div>
         <div class="subcategory rozrywka">
             <span>Imprezy</span>
             <input type="checkbox">
@@ -130,15 +131,21 @@
     </div>
  
     <script>
-        function toggleSubcategories(category) {
-            let subcategories = document.querySelectorAll('.' + category);
-            let checkbox = document.getElementById(category + '-checkbox');
-            subcategories.forEach(sub => {
-                sub.style.display = checkbox.checked ? 'none' : 'flex';
-            });
+    function toggleSubcategories(event, category) {
+        let checkbox = document.getElementById(category + '-checkbox');
+        let subcategories = document.querySelectorAll('.' + category);
+
+        // Odwracamy stan checkboxa TYLKO gdy kliknięto w div, nie w sam checkbox
+        if (event.target !== checkbox) {
             checkbox.checked = !checkbox.checked;
         }
-    </script>
+
+        // Przełączanie widoczności podkategorii
+        subcategories.forEach(sub => {
+            sub.style.display = checkbox.checked ? 'flex' : 'none';
+        });
+    }
+</script>
     </section>
 </body>
 <script src="wyswietlanie.js"></script>
