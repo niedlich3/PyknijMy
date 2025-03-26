@@ -1,3 +1,38 @@
+<?php
+session_start();
+error_reporting(0);
+include("logowanie/connection.php");
+include("logowanie/functions.php");
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+        $result = mysqli_query($conn, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $user_data = mysqli_fetch_assoc($result);
+            
+            if (password_verify($password, $user_data['password'])) {
+                $_SESSION['user_id'] = $user_data['user_id'];
+                header("Location: index.php");
+                die;
+            } else {
+                echo "Nieprawidłowe hasło!";
+            }
+        } else {
+            echo "Użytkownik nie istnieje!";
+        }
+    } else {
+        echo "Proszę wypełnić wszystkie pola!";
+    }
+}
+
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -10,7 +45,6 @@
 	<link rel="manifest" href="manifest.json">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -27,14 +61,14 @@
     </header>
     <section class="hero">
         <section class="log">
-            <form>
+            <form action="login.php" method = "post">
                 <label>E-mail</br><input type="email" placeholder="Podaj email"></label></br></br>
                 <label>Hasło</br><input type="password" placeholder="Podaj hasło"></label></br></br>
                 <button type="submit" class="guzik1">Zaloguj</button></br></br>
                 <a href="#">Zapomniałeś hasła?</a></br>
                 <a href="register.php">Nie masz konta? Zarejestruj się</a>
             </form>
-        `</section>
+        </section>
     </section>
 </body>
 </html>
