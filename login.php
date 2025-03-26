@@ -1,16 +1,25 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include("logowanie/connection.php");
 include("logowanie/functions.php");
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+if (!$conn) {
+    die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
+}
 
-    if (!empty($_POST['email']) && !empty($_POST['password'])) {
-        $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
-        $result = mysqli_query($conn, $query);
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['email'], $_POST['password'])) {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (!empty($email) && !empty($password)) {
+        $query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
         if ($result && mysqli_num_rows($result) > 0) {
             $user_data = mysqli_fetch_assoc($result);
@@ -18,15 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (password_verify($password, $user_data['password'])) {
                 $_SESSION['user_id'] = $user_data['user_id'];
                 header("Location: index.php");
-                die;
+                exit;
             } else {
-                echo "Nieprawidłowe hasło!";
+                $error = "Nieprawidłowe hasło!";
             }
         } else {
-            echo "Użytkownik nie istnieje!";
+            $error = "Użytkownik nie istnieje!";
         }
     } else {
-        echo "Proszę wypełnić wszystkie pola!";
+        $error = "Proszę wypełnić wszystkie pola!";
     }
 }
 
@@ -61,13 +70,14 @@ mysqli_close($conn);
     </header>
     <section class="hero">
         <section class="log">
-            <form action="login.php" method = "post">
-                <label>E-mail</br><input type="email" placeholder="Podaj email"></label></br></br>
-                <label>Hasło</br><input type="password" placeholder="Podaj hasło"></label></br></br>
-                <button type="submit" class="guzik1">Zaloguj</button></br></br>
-                <a href="#">Zapomniałeś hasła?</a></br>
-                <a href="register.php">Nie masz konta? Zarejestruj się</a>
-            </form>
+        <form action="login.php" method="post">
+    <label>E-mail</br><input type="email" name="email" placeholder="Podaj email"></label></br></br>
+    <label>Hasło</br><input type="password" name="password" placeholder="Podaj hasło"></label></br></br>
+    <button type="submit" class="guzik1">Zaloguj</button></br></br>
+    <?php if (isset($error)) { echo "<div class='error'style='color:red;'>$error</div>"; } ?>
+    <a href="#">Zapomniałeś hasła?</a></br>
+    <a href="register.php">Nie masz konta? Zarejestruj się</a>
+</form>
         </section>
     </section>
 </body>

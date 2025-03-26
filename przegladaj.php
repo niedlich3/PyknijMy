@@ -1,3 +1,11 @@
+<?php
+  
+  session_start();
+
+  include("logowanie/connection.php");
+  include("logowanie/functions.php");
+  $user_data = check_login($conn);
+?>  
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -22,6 +30,8 @@
             <a href="#">Dodaj</a>
             <a href="#">O nas</a>
         </nav>
+        <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
+       <!-- <li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;">Hello, <?php echo $user_data['user_name']; ?></a></li> --> 
         <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
     <section class="heroprz">

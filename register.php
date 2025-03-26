@@ -1,52 +1,52 @@
 <?php 
 session_start();
-    error_reporting(0);
+error_reporting(0);
 	include("logowanie/connection.php");
 	include("logowanie/functions.php");
 
 
-	if($_SERVER['REQUEST_METHOD'] == "POST")
-	{
-		//something was posted
+	if ($_SERVER['REQUEST_METHOD'] == "POST") {
+		// Pobieranie danych z formularza
 		$user_name = $_POST['user_name'];
-        $email = $_POST['email'];
+		$email = $_POST['email'];
 		$password = $_POST['password'];
-        $password_repeat = $_POST['password_repeat'];
+		$password_repeat = $_POST['password_repeat'];
 		$hash = password_hash($password, PASSWORD_DEFAULT);
-		if(!empty($user_name) && !empty($password))
-		{
-			
+	
+		if (!empty($user_name) && !empty($email) && !empty($password) && !empty($password_repeat)) {
+			// Sprawdzenie, czy hasła są identyczne
+			if ($password !== $password_repeat) {
+				$_SESSION['error'] = "Hasła nie są takie same!";
+				header("Location: register.php"); // Zmienić na odpowiednią stronę formularza rejestracji
+				exit;
+			}
+	
 			$user_id = random_num(20);
 			$query = "SELECT * FROM users WHERE user_name = '$user_name'";
 			$result = mysqli_query($conn, $query);
-		if ($password !== $password_repeat) {
-            echo "Hasła nie są takie same!";
-        }
-		if(mysqli_num_rows($result) > 0) {
-		echo "Nazwa użytkownika już istnieje!";
-} else {
-    $query1 = "insert into users (user_id,email,user_name,password) values ('$user_id','$email','$user_name','$hash')";
-
-			mysqli_query($conn, $query1);
-			
-			header("Location: login.php");
-			die;
-}
-			//save to database
-			//$user_id = random_num(20);
-			//$query = "insert into users (user_id,user_name,password) values ('$user_id','$user_name','$hash')";
-
-			//mysqli_query($conn, $query);
-
-			//header("Location: login.php");
-			//die;
-		}//else
-		//{
-			//echo "Please enter some valid information!";
-		//}
+	
+			if (mysqli_num_rows($result) > 0) {
+				$_SESSION['error'] = "Nazwa użytkownika już istnieje!";
+				header("Location: register.php");
+				exit;
+			} else {
+				$query1 = "INSERT INTO users (user_id, email, user_name, password) VALUES ('$user_id', '$email', '$user_name', '$hash')";
+				mysqli_query($conn, $query1);
+				
+				$_SESSION['success'] = "Rejestracja zakończona sukcesem! Możesz się teraz zalogować.";
+				header("Location: login.php");
+				exit;
+			}
+		} else {
+			$_SESSION['error'] = "Wypełnij wszystkie pola!";
+			header("Location: register.php");
+			exit;
+		}
 	}
+	
+	mysqli_close($conn);
     
-mysqli_close($conn);
+
 
 ?>
 <!DOCTYPE html>
@@ -76,6 +76,9 @@ mysqli_close($conn);
         </nav>
         <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
+
+	
+
     <section class="hero">
         <section class="rej">
             <form method="post">
@@ -85,6 +88,17 @@ mysqli_close($conn);
                 <label>Powtórz hasło</br><input type="password" placeholder="Powtórz hasło" name="password_repeat"></label></br></br>
                 <button type="submit" class="guzik1">Stwórz konto</button></br></br>
             </form>
+			<?php
+    if (isset($_SESSION['error'])) {
+        echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+        unset($_SESSION['error']); // Usunięcie błędu po wyświetleniu
+    }
+
+    if (isset($_SESSION['success'])) {
+        echo '<p style="color: green;">' . $_SESSION['success'] . '</p>';
+        unset($_SESSION['success']); // Usunięcie sukcesu po wyświetleniu
+    }
+    ?>
         </section>
     </section>
 </body>
