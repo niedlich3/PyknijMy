@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 error_reporting(E_ALL);
@@ -74,7 +75,7 @@ mysqli_close($conn);
     <label>E-mail</br><input type="email" name="email" placeholder="Podaj email"></label></br></br>
     <label>Hasło</br><input type="password" name="password" placeholder="Podaj hasło"></label></br></br>
     <button type="submit" class="guzik1">Zaloguj</button></br></br>
-    <?php if (isset($error)) { echo "<div class='error'style='color:red;'>$error</div>"; } ?>
+    <?php if (isset($error)) { echo "<div class='error' style='color:red;'>$error</div>"; } ?>
     <a href="#">Zapomniałeś hasła?</a></br>
     <a href="register.php">Nie masz konta? Zarejestruj się</a>
 </form>

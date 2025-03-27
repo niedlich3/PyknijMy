@@ -1,54 +1,67 @@
 <?php 
 session_start();
-error_reporting(0);
-	include("logowanie/connection.php");
-	include("logowanie/functions.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+include("logowanie/connection.php");
+include("logowanie/functions.php");
 
-	if ($_SERVER['REQUEST_METHOD'] == "POST") {
-		// Pobieranie danych z formularza
-		$user_name = $_POST['user_name'];
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		$password_repeat = $_POST['password_repeat'];
-		$hash = password_hash($password, PASSWORD_DEFAULT);
-	
-		if (!empty($user_name) && !empty($email) && !empty($password) && !empty($password_repeat)) {
-			// Sprawdzenie, czy hasła są identyczne
-			if ($password !== $password_repeat) {
-				$_SESSION['error'] = "Hasła nie są takie same!";
-				header("Location: register.php"); // Zmienić na odpowiednią stronę formularza rejestracji
-				exit;
-			}
-	
-			$user_id = random_num(20);
-			$query = "SELECT * FROM users WHERE user_name = '$user_name'";
-			$result = mysqli_query($conn, $query);
-	
-			if (mysqli_num_rows($result) > 0) {
-				$_SESSION['error'] = "Nazwa użytkownika już istnieje!";
-				header("Location: register.php");
-				exit;
-			} else {
-				$query1 = "INSERT INTO users (user_id, email, user_name, password) VALUES ('$user_id', '$email', '$user_name', '$hash')";
-				mysqli_query($conn, $query1);
-				
-				$_SESSION['success'] = "Rejestracja zakończona sukcesem! Możesz się teraz zalogować.";
-				header("Location: login.php");
-				exit;
-			}
-		} else {
-			$_SESSION['error'] = "Wypełnij wszystkie pola!";
-			header("Location: register.php");
-			exit;
-		}
-	}
-	
-	mysqli_close($conn);
-    
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Pobieranie danych z formularza
+    $user_name = trim($_POST['user_name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $password_repeat = $_POST['password_repeat'] ?? '';
 
+    // Sprawdzanie, czy wszystkie pola są wypełnione
+    if (empty($user_name) || empty($email) || empty($password) || empty($password_repeat)) {
+        $_SESSION['error'] = "Wypełnij wszystkie pola!";
+        header("Location: register.php");
+        exit;
+    }
 
+    // Sprawdzanie, czy hasła są takie same
+    if ($password !== $password_repeat) {
+        $_SESSION['error'] = "Hasła nie są takie same!";
+		header("Location: register.php");
+        exit;
+
+    }
+
+    // Sprawdzenie, czy użytkownik już istnieje
+    $query = "SELECT * FROM users WHERE user_name = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $user_name);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['error'] = "Nazwa użytkownika już istnieje!";
+        header("Location: register.php");
+        exit;
+    }
+
+    // Haszowanie hasła i zapis do bazy
+    $user_id = random_num(20);
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $query1 = "INSERT INTO users (user_id, email, user_name, password) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $query1);
+    mysqli_stmt_bind_param($stmt, "ssss", $user_id, $email, $user_name, $hash);
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION['success'] = "Rejestracja zakończona sukcesem!";
+        header("Location: login.php");
+        exit;
+    } else {
+        $_SESSION['error'] = "Błąd rejestracji. Spróbuj ponownie.";
+        header("Location: register.php");
+        exit;
+    }
+}
+
+mysqli_close($conn);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -66,9 +79,10 @@ error_reporting(0);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style ="
+    overflow:visible;" id="scrollbar4">
     <header>
-       <a href="indexnowy.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
+       <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="#">Przeglądaj</a>
             <a href="#">Dodaj</a>
@@ -86,9 +100,7 @@ error_reporting(0);
                 <label>E-mail</br><input type="email" placeholder="Podaj email" name="email"></label></br></br>
                 <label>Hasło</br><input type="password" placeholder="Podaj hasło" name="password"></label></br></br>
                 <label>Powtórz hasło</br><input type="password" placeholder="Powtórz hasło" name="password_repeat"></label></br></br>
-                <button type="submit" class="guzik1">Stwórz konto</button></br></br>
-            </form>
-			<?php
+				<?php
     if (isset($_SESSION['error'])) {
         echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
         unset($_SESSION['error']); // Usunięcie błędu po wyświetleniu
@@ -99,6 +111,10 @@ error_reporting(0);
         unset($_SESSION['success']); // Usunięcie sukcesu po wyświetleniu
     }
     ?>
+				<button type="submit" class="guzik1">Stwórz konto</button></br></br>
+				
+            </form>
+			
         </section>
     </section>
 </body>
