@@ -1,4 +1,11 @@
+<?php
+  
+  session_start();
 
+  include("logowanie/connection.php");
+  include("logowanie/functions.php");
+  $user_data = check_login($conn);
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
