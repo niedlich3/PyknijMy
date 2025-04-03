@@ -1,11 +1,11 @@
-1. Rejestracja i logowanie
+1. Rejestracja i logowanie *
 Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na stronie
 
 -Logowanie: Dostęp do aplikacji poprzez logowanie sie na stworzone wcześniej konto poprzez formularz rejestracji
 
 -Zarządzanie profilem: Użytkownik powinien móc edytować swoje dane, zdjęcie profilowe i status.
 
-2. Tworzenie wydarzeń
+2. Tworzenie wydarzeń *
 -Kategorie wydarzeń:
 
 -Sportowe: np. piłka nożna, koszykówka, bieganie.
@@ -38,7 +38,7 @@ Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na 
 
 -Zarządzanie wydarzeniem: Możliwość edytowania i usuwania wydarzenia przez twórcę.
 
-3. Zarządzanie uczestnikami
+3. Zarządzanie uczestnikami NIE DO KONCA +-
 -Zgłaszanie się na wydarzenia:
 
 -Użytkownicy mogą zapisać się na wydarzenie jako uczestnicy.
@@ -51,9 +51,9 @@ Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na 
 
 -Opcja dodania użytkowników do wydarzenia jako organizator.
 
--Limit uczestników:
+-Limit uczestników: *
 
--Twórca wydarzenia może ustalić limit osób, które mogą się zapisać.
+-Twórca wydarzenia może ustalić limit osób, które mogą się zapisać. *
 
 4. Czat w wydarzeniu // ADDON
 -Własny czat dla każdego wydarzenia:
@@ -68,7 +68,7 @@ Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na 
 
 -Powiadomienia o nowych wiadomościach: Użytkownicy otrzymują powiadomienia o nowych wiadomościach w czacie wydarzenia.
 
-5. Znajomi i interakcje społecznościowe
+5. Znajomi i interakcje społecznościowe ciezko
 -Dodawanie znajomych: Użytkownicy mogą wyszukiwać innych użytkowników i dodawać ich do swojej listy znajomych.
 
 -Zarządzanie znajomymi: Możliwość akceptowania lub odrzucania zaproszeń do znajomych oraz usuwania użytkowników ze znajomych.
@@ -77,7 +77,7 @@ Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na 
 
 -Powiadomienia o aktywności znajomych: Użytkownicy będą informowani, gdy ich znajomi dołączą do wydarzenia lub utworzą nowe wydarzenie.
 
-6. Wyszukiwanie wydarzeń
+6. Wyszukiwanie wydarzeń *
 -Filtrowanie wydarzeń: Możliwość wyszukiwania wydarzeń według kategorii (sportowe, naukowe, rozrywkowe), daty, lokalizacji i tematyki.
 
 -Szukaj po nazwie lub tagu: Możliwość wyszukiwania wydarzeń po nazwie lub przypisanych tagach.
@@ -89,14 +89,14 @@ Rejestracja użytkownika: Możliwość rejestracji za pomoca tworzenia konta na 
 
 -E-mail/SMS: Powiadomienia o zapisaniu się na wydarzenie, zmianach w harmonogramie itp.
 
-8. Interfejs użytkownika (UI) i doświadczenie (UX)
+8. Interfejs użytkownika (UI) i doświadczenie (UX) 
 -Responsywny design: Aplikacja powinna być zoptymalizowana pod różne urządzenia (komputery, tablety, telefony).
 
--Przejrzystość: Intuicyjny i łatwy w nawigacji interfejs.
+-Przejrzystość: Intuicyjny i łatwy w nawigacji interfejs. *
 
 -Dostępność: Możliwość dostosowania czcionki i kolorów, tryb nocny.
 
-9. Bezpieczeństwo i prywatność
+9. Bezpieczeństwo i prywatność *
 -Bezpieczne dane użytkowników: Przechowywanie danych osobowych zgodnie z RODO i innymi regulacjami dotyczącymi ochrony prywatności.
 
 -Zarządzanie dostępem: Użytkownicy mogą kontrolować, kto ma dostęp do ich danych i informacji o wydarzeniach.

@@ -27,7 +27,7 @@
        <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="przegladaj.php">Przeglądaj</a>
-            <a href="#">Dodaj</a>
+            <a href="eventchoice.php">Dodaj</a>
             <a href="#">O nas</a>
         </nav>
         <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
