@@ -8,12 +8,113 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
-
 const app = express();
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const fetch = require('node-fetch'); // Użycie require w CommonJS
+
+// Middleware
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+    origin: 'http://localhost',  // Dostosuj do swojego frontendu
+    credentials: true
+}));
+
+// Połączenie z MySQL
+db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'pyknijmy'
+});
+
+db.connect((err) => {
+    if (err) {
+        console.error("Błąd połączenia z MySQL:", err);
+        return;
+    }
+    console.log("✅ Połączono z bazą MySQL");
+});
+
+// Pobieranie user_id z sesji PHP
+const getUserIdFromSession = async (sessionId) => {
+    try {
+        const response = await fetch('http://localhost/pyknijmy-main/session_check.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': `PHPSESSID=${sessionId}`
+            },
+            credentials: 'include' // Wymagane, aby przesłać sesję!
+        });
+
+        // Logowanie odpowiedzi tekstowej przed próbą parsowania JSON
+        const text = await response.text();
+        console.log("Odpowiedź z serwera:", text);
+
+        // Parsowanie tylko, jeśli odpowiedź jest w formacie JSON
+        const data = JSON.parse(text);
+        console.log("Odpowiedź z session_check.php:", data);
+
+        return data.user_id || null;
+    } catch (error) {
+        console.error("Błąd pobierania sesji:", error);
+        return null;
+    }
+};
+
+
+
+// Endpoint do dołączania do wydarzenia
+app.post('/dolaczDoWydarzenia', async (req, res) => {
+    try {
+        console.log("Ciasteczka otrzymane w żądaniu:", req.cookies);
+        const sessionId = req.cookies.PHPSESSID;
+        console.log("Pobrany PHPSESSID:", sessionId);
+
+        if (!sessionId) {
+            return res.status(401).json({ message: "Nie znaleziono sesji!" });
+        }
+
+        const userId = await getUserIdFromSession(sessionId);
+        console.log("Pobrane user_id:", userId);
+
+        if (!userId) {
+            return res.status(401).json({ message: "Brak zalogowanego użytkownika!" });
+        }
+
+        const eventId = req.body.event_id;
+        if (!eventId) {
+            return res.status(400).json({ message: "Brak ID wydarzenia!" });
+        }
+
+        // Sprawdzamy, czy użytkownik jest już zapisany na wydarzenie
+        db.query('SELECT * FROM user_events WHERE user_id = ? AND event_id = ?', [userId, eventId], (err, results) => {
+            if (err) {
+                console.error("Błąd przy sprawdzaniu zapisów:", err);
+                return res.status(500).json({ message: "Błąd serwera" });
+            }
+
+            if (results.length > 0) {
+                return res.status(400).json({ message: "Jesteś już zapisany!" });
+            }
+
+            // Jeśli użytkownik nie jest zapisany, dodajemy go do wydarzenia
+            db.query('INSERT INTO user_events (user_id, event_id) VALUES (?, ?)', [userId, eventId], (err) => {
+                if (err) {
+                    console.error("Błąd przy dodawaniu użytkownika do wydarzenia:", err);
+                    return res.status(500).json({ message: "Błąd serwera" });
+                }
+                res.status(200).json({ message: "Dołączono do wydarzenia!" });
+            });
+        });
+
+    } catch (error) {
+        console.error("Nieoczekiwany błąd:", error);
+        res.status(500).json({ message: "Wystąpił nieoczekiwany błąd" });
+    }
+});
+
 
 // Endpoint do dodawania wydarzeń sportowych
 app.post('/dodajWydarzenieSportowe', async (req, res) => {
@@ -114,84 +215,6 @@ app.get('/wydarzeniaRozrywka', async (req, res) => {
         res.status(500).json({ message: "Błąd serwera", error });
     }
 });
-
-
-// Dodaj przed konfiguracją innych middleware
-app.use(session({
-    secret: 'twój_klucz_sesji', // Użyj silnego sekretu
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Możesz ustawić `secure: true` w trybie produkcji z HTTPS
-}));
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-
-    // Załóżmy, że masz proces logowania, który sprawdza dane użytkownika
-    // Po zweryfikowaniu logowania ustawiasz user_id w sesji
-    req.session.userId = '589910';  // Możesz pobrać userId z bazy danych
-
-    res.status(200).json({ message: 'Zalogowano!' });
-});
-
-// Trasa, w której pobierasz aktualne user_id
-app.get('/getUserId', (req, res) => {
-    const userId = req.session.userId;  // Odczytujesz userId z sesji
-
-    if (!userId) {
-        return res.status(401).json({ message: "Brak zalogowanego użytkownika!" });
-    }
-
-    res.status(200).json({ userId: userId });  // Zwracasz userId
-});
-
-
-
-// Konfiguracja połączenia z MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pyknijmy'
-});
-
-app.use(cookieParser());
-app.use(express.json());  // Aby obsługiwać JSON w body
-
-// Konfiguracja sesji
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Ustaw na true przy użyciu HTTPS
-}));
-
-app.post('/dolaczDoWydarzenia', async (req, res) => {
-    const sessionId = req.cookies.PHPSESSID;  // Odczytujemy ID sesji PHP
-
-    if (!sessionId) {
-        return res.status(401).json({ message: "Musisz być zalogowany, aby dołączyć do wydarzenia!" });
-    }
-    req.session.userId = '589910';
-    // Odczytujemy userId z sesji, które jest już zapisane w sesji PHP
-    const userId = req.session.userId;
-
-    if (!userId) {
-        return res.status(401).json({ message: "Nie znaleziono użytkownika w sesji!" });
-    }
-
-    const eventId = req.body.event_id;  // event_id z frontend
-
-    // Wstawienie do bazy danych
-    const query = 'INSERT INTO user_events (user_id, event_id) VALUES (?, ?)';
-    db.query(query, [userId, eventId], (err, results) => {
-        if (err) {
-            console.error('Błąd podczas zapisywania użytkownika do wydarzenia:', err);
-            return res.status(500).json({ message: "Błąd serwera" });
-        }
-        res.status(200).json({ message: "Dołączono do wydarzenia!" });
-    });
-});
-
 // Konfiguracja portu i uruchomienie serwera
 const PORT = 3000;
 app.listen(PORT, () => {

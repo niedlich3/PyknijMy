@@ -164,13 +164,12 @@
 </body>
 <script src="wyswietlanie.js"></script>
 <script>
-async function dolaczDoWydarzenia(userId, eventId) {
+async function dolaczDoWydarzenia(eventId) {
     const response = await fetch('http://localhost:3000/dolaczDoWydarzenia', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ user_id: userId, event_id: eventId })
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',  // MUSI być ustawione!
+        body: JSON.stringify({ event_id: eventId })
     });
 
     const data = await response.json();

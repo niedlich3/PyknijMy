@@ -1,77 +1,3 @@
-
-async function pobierzWydarzeniaSportowe() {
-    try {
-        const response = await fetch('http://localhost:3000/wydarzeniaSportowe');
-        if (!response.ok) throw new Error('Błąd pobierania danych sportowych');
-        const dane = await response.json();
-        
-        // Pobierz element listy w HTML
-        const lista = document.getElementById('lista');
-
-        // Dodaj wydarzenia do listy
-        dane.forEach(event => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br>sport: ${event.sports} <button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
-`;
-            lista.appendChild(li);
-        });
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function pobierzWydarzeniaEdukacyjne() {
-    try {
-        const response = await fetch('http://localhost:3000/wydarzeniaEdukacyjne');
-        if (!response.ok) throw new Error('Błąd pobierania danych edukacyjnych');
-        const dane = await response.json();
-        
-        // Pobierz element listy w HTML
-        const lista = document.getElementById('lista');
-
-        // Dodaj wydarzenia do listy
-        dane.forEach(event => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br> przedmiot: ${event.przedmioty} <button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
-`;
-            lista.appendChild(li);
-        });
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function pobierzWydarzeniaRozrywka() {
-    try {
-        const response = await fetch('http://localhost:3000/wydarzeniaRozrywka');
-        if (!response.ok) throw new Error('Błąd pobierania danych edukacyjnych');
-        const dane = await response.json();
-        
-        // Pobierz element listy w HTML
-        const lista = document.getElementById('lista');
-
-        // Dodaj wydarzenia do listy
-        dane.forEach(event => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br> przedmiot: ${event.rozrywka} <button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
-`;
-            lista.appendChild(li);
-        });
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// Wywołaj funkcje po załadowaniu strony
-document.addEventListener('DOMContentLoaded', () => {
-    pobierzWydarzeniaRozrywka();
-    pobierzWydarzeniaEdukacyjne();
-    pobierzWydarzeniaSportowe();
-});
-
-
 async function pobierzWydarzenia() {
     const lista = document.getElementById('lista');
     lista.innerHTML = ''; // Wyczyść listę przed dodaniem nowych wydarzeń
@@ -82,14 +8,12 @@ async function pobierzWydarzenia() {
 
     let urls = [];
 
-    // Sprawdź, czy żaden checkbox nie jest zaznaczony
+    // Jeśli żaden checkbox nie jest zaznaczony, pobierz wszystkie wydarzenia
     if (!pokazSport && !pokazEdukacja && !pokazRozrywka) {
-        // Jeśli żaden checkbox nie jest zaznaczony, pobierz wszystkie wydarzenia
         urls.push('http://localhost:3000/wydarzeniaSportowe');
         urls.push('http://localhost:3000/wydarzeniaEdukacyjne');
         urls.push('http://localhost:3000/wydarzeniaRozrywka');
     } else {
-        // Jeśli checkboxy są zaznaczone, dodaj tylko odpowiednie URL do listy
         if (pokazSport) urls.push('http://localhost:3000/wydarzeniaSportowe');
         if (pokazEdukacja) urls.push('http://localhost:3000/wydarzeniaEdukacyjne');
         if (pokazRozrywka) urls.push('http://localhost:3000/wydarzeniaRozrywka');
@@ -102,9 +26,9 @@ async function pobierzWydarzenia() {
         // Wyświetlamy wszystkie pobrane wydarzenia
         dane.flat().forEach(event => {
             const li = document.createElement('li');
-            
+
             let szczegoly = `<strong>${event.nazwa}</strong> <br> Opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br>`;
-        
+
             if (event.sports) {
                 szczegoly += `Sport: ${event.sports} <br>`;
             }
@@ -114,17 +38,39 @@ async function pobierzWydarzenia() {
             if (event.rozrywka) {
                 szczegoly += `Rodzaj rozrywki: ${event.rozrywka} <br>`;
             }
-        
-            szczegoly += `<button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
-`;
-        
+
+            // Używamy _id z MongoDB jako event_id
+            if (event._id) {
+                szczegoly += `<button onclick="dolaczDoWydarzenia('${event._id}')">Dołącz</button>`;
+            } else {
+                console.error("Brak _id w wydarzeniu", event);
+            }
+
             li.innerHTML = szczegoly;
             lista.appendChild(li);
         });
-        
 
     } catch (error) {
         console.error("Błąd podczas pobierania danych:", error);
+    }
+}
+
+// Funkcja do dołączania do wydarzenia (z _id)
+async function dolaczDoWydarzenia(eventId) {
+    try {
+        const response = await fetch('http://localhost:3000/dolaczDoWydarzenia', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',  // Wysyła ciasteczka (PHPSESSID)
+            body: JSON.stringify({ event_id: eventId })
+        });
+
+        const data = await response.json();
+        alert(data.message);
+    } catch (error) {
+        console.error("Błąd dołączania do wydarzenia:", error);
     }
 }
 
@@ -135,4 +81,3 @@ document.getElementById('rozrywka-checkbox').addEventListener('change', pobierzW
 
 // Po załadowaniu strony wywołaj funkcję, aby pobrać wszystkie wydarzenia, jeśli żadna opcja nie jest zaznaczona
 document.addEventListener('DOMContentLoaded', pobierzWydarzenia);
-
