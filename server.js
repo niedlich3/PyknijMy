@@ -5,6 +5,10 @@ const EducationEvent = require('./schemat-nauka'); // Model wydarzenia edukacyjn
 const EntertainmentEvent = require('./schemat-rozrywka');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mysql = require('mysql2');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 app.use(cors());
@@ -112,12 +116,91 @@ app.get('/wydarzeniaRozrywka', async (req, res) => {
 });
 
 
+// Dodaj przed konfiguracją innych middleware
+app.use(session({
+    secret: 'twój_klucz_sesji', // Użyj silnego sekretu
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Możesz ustawić `secure: true` w trybie produkcji z HTTPS
+}));
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Załóżmy, że masz proces logowania, który sprawdza dane użytkownika
+    // Po zweryfikowaniu logowania ustawiasz user_id w sesji
+    req.session.userId = '589910';  // Możesz pobrać userId z bazy danych
+
+    res.status(200).json({ message: 'Zalogowano!' });
+});
+
+// Trasa, w której pobierasz aktualne user_id
+app.get('/getUserId', (req, res) => {
+    const userId = req.session.userId;  // Odczytujesz userId z sesji
+
+    if (!userId) {
+        return res.status(401).json({ message: "Brak zalogowanego użytkownika!" });
+    }
+
+    res.status(200).json({ userId: userId });  // Zwracasz userId
+});
 
 
 
+// Konfiguracja połączenia z MySQL
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'pyknijmy'
+});
+
+app.use(cookieParser());
+app.use(express.json());  // Aby obsługiwać JSON w body
+
+// Konfiguracja sesji
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Ustaw na true przy użyciu HTTPS
+}));
+
+app.post('/dolaczDoWydarzenia', async (req, res) => {
+    const sessionId = req.cookies.PHPSESSID;  // Odczytujemy ID sesji PHP
+
+    if (!sessionId) {
+        return res.status(401).json({ message: "Musisz być zalogowany, aby dołączyć do wydarzenia!" });
+    }
+    req.session.userId = '589910';
+    // Odczytujemy userId z sesji, które jest już zapisane w sesji PHP
+    const userId = req.session.userId;
+
+    if (!userId) {
+        return res.status(401).json({ message: "Nie znaleziono użytkownika w sesji!" });
+    }
+
+    const eventId = req.body.event_id;  // event_id z frontend
+
+    // Wstawienie do bazy danych
+    const query = 'INSERT INTO user_events (user_id, event_id) VALUES (?, ?)';
+    db.query(query, [userId, eventId], (err, results) => {
+        if (err) {
+            console.error('Błąd podczas zapisywania użytkownika do wydarzenia:', err);
+            return res.status(500).json({ message: "Błąd serwera" });
+        }
+        res.status(200).json({ message: "Dołączono do wydarzenia!" });
+    });
+});
 
 // Konfiguracja portu i uruchomienie serwera
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`✅ Serwer działa na http://localhost:${PORT}`);
 });
+
+
+
+
+
+
+// Uruchom serw

@@ -11,7 +11,8 @@ async function pobierzWydarzeniaSportowe() {
         // Dodaj wydarzenia do listy
         dane.forEach(event => {
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br>sport: ${event.sports}`;
+            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br>sport: ${event.sports} <button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
+`;
             lista.appendChild(li);
         });
 
@@ -32,7 +33,8 @@ async function pobierzWydarzeniaEdukacyjne() {
         // Dodaj wydarzenia do listy
         dane.forEach(event => {
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br> przedmiot: ${event.przedmioty}`;
+            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br> przedmiot: ${event.przedmioty} <button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
+`;
             lista.appendChild(li);
         });
 
@@ -52,7 +54,8 @@ async function pobierzWydarzeniaRozrywka() {
         // Dodaj wydarzenia do listy
         dane.forEach(event => {
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br> przedmiot: ${event.rozrywka}`;
+            li.innerHTML = `<strong>${event.nazwa}</strong> <br> opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br> przedmiot: ${event.rozrywka} <button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
+`;
             lista.appendChild(li);
         });
 
@@ -100,23 +103,25 @@ async function pobierzWydarzenia() {
         dane.flat().forEach(event => {
             const li = document.createElement('li');
             
-            // Zmienna do trzymania szczegółowych informacji
-            let szczegoly = `<strong>${event.nazwa}</strong> <br> Opis: ${event.opis} <br>Liczba osób: ${event.ilosc}`;
-            
-            // Dodaj szczegóły w zależności od kategorii
+            let szczegoly = `<strong>${event.nazwa}</strong> <br> Opis: ${event.opis} <br>Liczba osób: ${event.ilosc} <br>`;
+        
             if (event.sports) {
-                szczegoly += `<br>Sport: ${event.sports}`;
+                szczegoly += `Sport: ${event.sports} <br>`;
             }
             if (event.przedmioty) {
-                szczegoly += `<br>Przedmiot: ${event.przedmioty}`;
+                szczegoly += `Przedmiot: ${event.przedmioty} <br>`;
             }
             if (event.rozrywka) {
-                szczegoly += `<br>Rodzaj rozrywki: ${event.rozrywka}`;
+                szczegoly += `Rodzaj rozrywki: ${event.rozrywka} <br>`;
             }
-
+        
+            szczegoly += `<button onclick="dolaczDoWydarzenia(12345, 1)">Dołącz</button>
+`;
+        
             li.innerHTML = szczegoly;
             lista.appendChild(li);
         });
+        
 
     } catch (error) {
         console.error("Błąd podczas pobierania danych:", error);

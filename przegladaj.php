@@ -5,6 +5,10 @@
   include("logowanie/connection.php");
   include("logowanie/functions.php");
   $user_data = check_login($conn);
+  // W PHP, po zalogowaniu użytkownika
+  $user_id = $id; // Twoje user_id z bazy danych
+  setcookie('userId', $user_id, time() + 3600, "/");  // Ustawiamy ciasteczko userId
+   
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -131,7 +135,7 @@
             <input type="checkbox">
         </div>
     </div>
-    <div>
+    <div id="wydarzenia-container">
         <h2>Wydarzenia</h2>
         <ul id="lista"></ul>
     </div>
@@ -159,4 +163,19 @@
     </section>
 </body>
 <script src="wyswietlanie.js"></script>
+<script>
+async function dolaczDoWydarzenia(userId, eventId) {
+    const response = await fetch('http://localhost:3000/dolaczDoWydarzenia', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user_id: userId, event_id: eventId })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+}
+
+</script>
 </html>

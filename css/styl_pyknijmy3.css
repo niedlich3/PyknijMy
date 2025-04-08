@@ -258,4 +258,77 @@ header {
     justify-content: space-between;
     min-height: 100vh;
 }
+#lista ul {
+    list-style: none; /* Usunięcie domyślnych kropek */
+    padding: 0;
+}
+
+/* Stylizacja pojedynczego wydarzenia */
+#lista li {
+    background: #fff3b0; /* Jasnożółte tło */
+    border: 2px solid #ffcc00; /* Obramowanie w kolorze złota */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+}
+
+/* Nagłówek wydarzenia */
+#lista li b {
+    font-size: 1.2em;
+    color: #cc8800; /* Pomarańczowy kolor */
+}
+
+/* Opis i szczegóły wydarzenia */
+#lista li p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+/* Stylowanie przycisku */
+#lista li button {
+    background: #ff9900;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#lista li button:hover {
+    background: #cc7700; /* Ciemniejszy pomarańcz po najechaniu */
+}
+/* Kontener wydarzeń zajmuje całą dostępną przestrzeń */
+div#wydarzenia-container {
+    width: 100%; /* Pełna szerokość */
+    padding: 20px;
+}
+
+/* Stylowanie listy wydarzeń */
+ul#lista {
+    display: flex;
+    flex-wrap: wrap; /* Kafelki będą się zawijać */
+    justify-content: center; /* Wyśrodkowanie kafelków */
+    gap: 15px; /* Odstępy między kafelkami */
+    padding: 0;
+    margin: 0;
+}
+
+/* Stylowanie pojedynczego wydarzenia */
+ul#lista li {
+    background: #f9f9f9;
+    padding: 20px;
+    width: 300px; /* Szerokość kafelka */
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    text-align: center;
+}
+
+/* Umożliwienie przewijania strony */
+body {
+    overflow-y: auto !important; /* Wymuszenie przewijania */
+}
 

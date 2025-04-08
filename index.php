@@ -5,6 +5,8 @@
   include("logowanie/connection.php");
   include("logowanie/functions.php");
   $user_data = check_login($conn);
+ setcookie('userId', $userId, time() + 3600, "/"); // 1 godzina
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
