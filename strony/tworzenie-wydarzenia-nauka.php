@@ -1,3 +1,13 @@
+<?php
+  
+  session_start();
+
+  include("../logowanie/connection.php");
+  include("../logowanie/functions.php");
+  $user_data = check_login($conn);
+ setcookie('userId', $userId, time() + 3600, "/"); // 1 godzina
+
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -22,11 +32,14 @@
             <a href="../przegladaj.php">Przeglądaj</a>
             <a href="#">Dodaj</a>
             <a href="#">O nas</a>
+            <a href="../profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;text-decoration: underline;">Hello, <?php echo "<b>" . $user_data['user_name'] . "</b>"; ?></a>
+            <a href="../login.php"><img src="../grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
         </nav>
-        <a href="../login.php"><img src="../grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
+         <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
+    
     </header>
     <section class="hero">
-    <section class = "tworzenie-tabelka">
+    <section class = "logw">
     <form id="NaukaData">
         <label for="nazwa">Nazwa wydarzenia:</label><br>
         <input type="text" id="nazwa" name="nazwa" required placeholder="Wpisz nazwę"><br>
@@ -39,7 +52,7 @@
         <p id="opisCount">Pozostało: 255 znaków</p>
 
 
-        <label for="sports">Sporty:</label><br>
+        <label for="sports">Przedmioty:</label><br>
         <select name="przedmioty" id="przedmioty">
 
 <!-- Przedmioty ogólnokształcące -->
@@ -125,7 +138,7 @@
 </optgroup>
 
 </select><br><br>
-        <button type ="submit" value = "submit"> Stwórz Wydarzenie</button><br>
+        <button type ="submit" value = "submit" class = "guzik1"> Stwórz Wydarzenie</button><br>
     </form>
 
     <script src="znaki.js"></script>

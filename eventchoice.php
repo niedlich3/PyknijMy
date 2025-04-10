@@ -1,3 +1,13 @@
+<?php
+  
+  session_start();
+
+  include("logowanie/connection.php");
+  include("logowanie/functions.php");
+  $user_data = check_login($conn);
+ setcookie('userId', $userId, time() + 3600, "/"); // 1 godzina
+
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,46 +16,30 @@
 	<meta name="theme-color" content="#000000"/>
 	<title>PyknijMy</title>
 	<link rel="icon" type="image/png" href="grafika/ikonka_pyknijmy.png">
-	<link rel="stylesheet" href="css/styl_pyknijmy2.css">
+	<link rel="stylesheet" href="css/styl_pyknijmy3.css">
 	<link rel="manifest" href="manifest.json">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            
-            <a class="navbar-brand" href = "index.php">  <img src="grafika/logopyknijmy.png" width="75" height="75" class="d-inline-block align-text-top">
-               
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href = "index.php" class="nav-link active" aria-current="page" >Strona główna</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="profil.php">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#aboutus">O nas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kontakt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="#">Dołącz teraz</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<main>
-	 <div class="uslugi">
+    <header>
+       <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
+        <nav class="nav-links">
+            <a href="przegladaj.php">Przeglądaj</a>
+            <a href="eventchoice.php">Dodaj</a>
+            <a href="#">O nas</a>
+            <a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;text-decoration: underline;">Hello, <?php echo "<b>" . $user_data['user_name'] . "</b>"; ?></a>
+        <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
+        </nav>
+        <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
+      
+    </header>
+    <section class="hero" >
+    <div class="uslugi">
         <div class="image-container">
            <a href ="strony/tworzenie-wydarzenia-sport.php"> <img src="grafika/sport.png" alt="1" class="img-fluid"></a>
         </div>
@@ -55,22 +49,6 @@
         <div class="image-container">
             <a href="strony/tworzenie-wydarzenia-rozrywka.php"> <img src="grafika/rozrywka.png" alt="3" class="img-fluid"></a>
         </div>
-</main>
-<footer>
-		<div class = "footerContainer">
-		 <div class = "footerNav">
-		  <ul>
-		    <li><a href = "index.php">Home</a></li>	
-			<li><a href= "https://linktr.ee/beatbuddy" id ="aboutus">About Us</a></li>
-		
-		  </ul>
-		 </div>
-		 
-		</div>
-		<div class = "footerBottom">
-		  <p>Copyright &copy;2024; Designed by <span class = "designer">BIG$WAGGBOY$BAND</span></p>
-		 </div>
-		</footer>
-		<script src="script.js"></script>
+    </section>
 </body>
 </html>

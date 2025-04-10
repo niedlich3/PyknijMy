@@ -1,3 +1,13 @@
+<?php
+  
+  session_start();
+
+  include("../logowanie/connection.php");
+  include("../logowanie/functions.php");
+  $user_data = check_login($conn);
+ setcookie('userId', $userId, time() + 3600, "/"); // 1 godzina
+
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -22,11 +32,13 @@
             <a href="../przegladaj.php">Przeglądaj</a>
             <a href="#">Dodaj</a>
             <a href="#">O nas</a>
+            <a href="../profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;text-decoration: underline;">Hello, <?php echo "<b>" . $user_data['user_name'] . "</b>"; ?></a>
+            <a href="../login.php"><img src="../grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
         </nav>
-        <a href="../login.php"><img src="../grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
+       
     </header>
     <section class="hero">
-    <section class="tworzenie-tabelka">
+    <section class="logw">
             <form id="EnteventForm">
                 <label for="nazwa">Nazwa wydarzenia:</label><br>
                 <input type="text" id="nazwa" name="nazwa" required placeholder="Wpisz nazwę"><br>
@@ -38,7 +50,7 @@
                 <textarea id="opis" name="opis" maxlength="255" placeholder="Napisz opis"></textarea><br>
                 <p id="opisCount">Pozostało: 255 znaków</p>
 
-                <label for="rozrywkas">Sporty:</label><br>
+                <label for="rozrywkas">Rozrywki:</label><br>
                 <select id="rozrywkas" name="rozrywkas" required>
                     <option value="kino">Wyjście do kina</option>
                     <option value="planszowki">Spotkanie przy planszówkach</option>
