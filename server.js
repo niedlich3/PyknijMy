@@ -10,6 +10,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
 const fetch = require('node-fetch'); // Użycie require w CommonJS
+const Userevent = require('./schemat-userevent');
 
 // Middleware
 app.use(cookieParser());
@@ -88,26 +89,18 @@ app.post('/dolaczDoWydarzenia', async (req, res) => {
             return res.status(400).json({ message: "Brak ID wydarzenia!" });
         }
 
-        // Sprawdzamy, czy użytkownik jest już zapisany na wydarzenie
-        db.query('SELECT * FROM user_events WHERE user_id = ? AND event_id = ?', [userId, eventId], (err, results) => {
-            if (err) {
-                console.error("Błąd przy sprawdzaniu zapisów:", err);
-                return res.status(500).json({ message: "Błąd serwera" });
-            }
+        // Sprawdzenie w MongoDB, czy użytkownik już dołączył
+        const istnieje = await Userevent.findOne({ userid: userId, eventid: eventId });
 
-            if (results.length > 0) {
-                return res.status(400).json({ message: "Jesteś już zapisany!" });
-            }
+        if (istnieje) {
+            return res.status(400).json({ message: "Jesteś już zapisany!" });
+        }
 
-            // Jeśli użytkownik nie jest zapisany, dodajemy go do wydarzenia
-            db.query('INSERT INTO user_events (user_id, event_id) VALUES (?, ?)', [userId, eventId], (err) => {
-                if (err) {
-                    console.error("Błąd przy dodawaniu użytkownika do wydarzenia:", err);
-                    return res.status(500).json({ message: "Błąd serwera" });
-                }
-                res.status(200).json({ message: "Dołączono do wydarzenia!" });
-            });
-        });
+        // Dodanie do MongoDB
+        const nowyZapis = new Userevent({ userid: userId, eventid: eventId });
+        await nowyZapis.save();
+
+        res.status(200).json({ message: "Dołączono do wydarzenia!" });
 
     } catch (error) {
         console.error("Nieoczekiwany błąd:", error);
