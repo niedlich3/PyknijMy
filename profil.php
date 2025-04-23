@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<link rel="manifest" href="manifest.json">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <script src="script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -58,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<div class = "konto_uzytkownika">';
         echo '<div class ="profil_nick">' . ' ', $row['user_name'];        
         echo '</div>';
-        echo '<hr>';
+        echo '<div class = "linia">';
+        echo '</div>';
         echo '<div class="about_me_container">';
         echo '<h1>O mnie</h1>';
         echo '<div class="about_me_content">';
@@ -67,9 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<button class="edit_button">Edytuj</button>';
         echo '</div>';
         echo '<form class="edit_about_me_form" style="display: none;" method="post">';
-        echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600" style="width:30vw;height:20vh">' . $row['about_me'] . '</textarea>';
-        echo '<button type="submit" class ="dodaj_buton" name="submit" style=" width: 10vw; background-color: black; color: white; border-radius: 20px; width: 100%;padding: 0.8rem;border: none; font-size: 0.9rem;cursor: pointer;transition: all 0.2s; margin-top: 10px;">Dodaj</button>';
-        echo '<button type="button" class="cancel_button"style=" width: 10vw; background-color: black; color: white; border-radius: 20px; width: 100%;padding: 0.8rem;border: none; font-size: 0.9rem;cursor: pointer;transition: all 0.2s; margin-top: 10px;">Anuluj</button>';
+        echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600">' . $row['about_me'] . '</textarea>';
+        echo '<button type="submit" name="submit">Dodaj</button>';
+        echo '<button type="button" class="cancel_button">Anuluj</button>';
         echo '</form>';
         echo '</div>';
      

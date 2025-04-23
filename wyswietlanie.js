@@ -41,7 +41,8 @@ async function pobierzWydarzenia() {
 
             // Używamy _id z MongoDB jako event_id
             if (event._id) {
-                szczegoly += `<button onclick="dolaczDoWydarzenia('${event._id}')">Dołącz</button>`;
+                szczegoly += `<button onclick="dolaczDoWydarzenia('${event._id}')">Dołącz</button> 
+                <button onclick="window.location.href='podglad.php?id=${event._id}'">Podgląd</button>`;
             } else {
                 console.error("Brak _id w wydarzeniu", event);
             }

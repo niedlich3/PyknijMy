@@ -10,6 +10,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
 const fetch = require('node-fetch'); // Użycie require w CommonJS
+const Userevent = require('./schemat-userevent');
 
 // Middleware
 app.use(cookieParser());
@@ -88,26 +89,18 @@ app.post('/dolaczDoWydarzenia', async (req, res) => {
             return res.status(400).json({ message: "Brak ID wydarzenia!" });
         }
 
-        // Sprawdzamy, czy użytkownik jest już zapisany na wydarzenie
-        db.query('SELECT * FROM user_events WHERE user_id = ? AND event_id = ?', [userId, eventId], (err, results) => {
-            if (err) {
-                console.error("Błąd przy sprawdzaniu zapisów:", err);
-                return res.status(500).json({ message: "Błąd serwera" });
-            }
+        // Sprawdzenie w MongoDB, czy użytkownik już dołączył
+        const istnieje = await Userevent.findOne({ userid: userId, eventid: eventId });
 
-            if (results.length > 0) {
-                return res.status(400).json({ message: "Jesteś już zapisany!" });
-            }
+        if (istnieje) {
+            return res.status(400).json({ message: "Jesteś już zapisany!" });
+        }
 
-            // Jeśli użytkownik nie jest zapisany, dodajemy go do wydarzenia
-            db.query('INSERT INTO user_events (user_id, event_id) VALUES (?, ?)', [userId, eventId], (err) => {
-                if (err) {
-                    console.error("Błąd przy dodawaniu użytkownika do wydarzenia:", err);
-                    return res.status(500).json({ message: "Błąd serwera" });
-                }
-                res.status(200).json({ message: "Dołączono do wydarzenia!" });
-            });
-        });
+        // Dodanie do MongoDB
+        const nowyZapis = new Userevent({ userid: userId, eventid: eventId });
+        await nowyZapis.save();
+
+        res.status(200).json({ message: "Dołączono do wydarzenia!" });
 
     } catch (error) {
         console.error("Nieoczekiwany błąd:", error);
@@ -215,6 +208,42 @@ app.get('/wydarzeniaRozrywka', async (req, res) => {
         res.status(500).json({ message: "Błąd serwera", error });
     }
 });
+
+
+app.get('/uczestnicy/:eventid', async (req, res) => {
+    const eventid = req.params.eventid;
+
+    try {
+        const userEvents = await Userevent.find({ eventid });
+        const userIds = userEvents.map(entry => entry.userid);
+
+        console.log("Znalezione userIds:", userIds);
+
+        if (userIds.length === 0) {
+            return res.json([]);
+        }
+
+        // Dynamiczne podstawienie tylu znaków zapytania ile userów
+        const placeholders = userIds.map(() => '?').join(',');
+        const sql = `SELECT user_name FROM users WHERE user_id IN (${placeholders})`;
+
+        db.query(sql, userIds, (err, results) => {
+            if (err) {
+                console.error("Błąd zapytania MySQL:", err);
+                return res.status(500).json({ message: "Błąd bazy danych" });
+            }
+
+            console.log("Znalezieni użytkownicy:", results);
+            res.json(results.map(row => row.user_name));  // Zmieniamy login na user_name
+        });
+
+    } catch (err) {
+        console.error("Błąd pobierania uczestników:", err);
+        res.status(500).json({ message: "Błąd serwera" });
+    }
+});
+
+
 // Konfiguracja portu i uruchomienie serwera
 const PORT = 3000;
 app.listen(PORT, () => {

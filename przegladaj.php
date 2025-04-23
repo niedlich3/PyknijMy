@@ -52,7 +52,7 @@
             <i class="fas fa-plus"></i>
         </div>
 
-        <div class="category" onclick="toggleSubcategories(event, 'sport')">
+        <div class="category">
     <span>Sport</span>
     <input type="checkbox" id="sport-checkbox" value="Sport" onclick="event.stopPropagation(); toggleSubcategories(event, 'sport');">
 </div>
@@ -77,7 +77,7 @@
             <input type="checkbox">
         </div>
         
-        <div class="category" onclick="toggleSubcategories(event, 'nauka')">
+        <div class="category">
     <span>Nauka</span>
     <input type="checkbox" id="nauka-checkbox" value="Nauka" onclick="event.stopPropagation(); toggleSubcategories(event, 'nauka');">
 </div>
@@ -107,7 +107,7 @@
             <input type="checkbox">
         </div>
         
-        <div class="category" onclick="toggleSubcategories(event, 'rozrywka')">
+        <div class="category">
     <span>Rozrywka</span>
     <input type="checkbox" id="rozrywka-checkbox" onclick="event.stopPropagation(); toggleSubcategories(event, 'rozrywka');">
 </div>
