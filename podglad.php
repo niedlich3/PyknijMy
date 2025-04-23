@@ -1,14 +1,49 @@
+<?php
+  
+  session_start();
+
+  include("logowanie/connection.php");
+  include("logowanie/functions.php");
+  $user_data = check_login($conn);
+  // W PHP, po zalogowaniu użytkownika
+  $user_id = $id; // Twoje user_id z bazy danych
+  setcookie('userId', $user_id, time() + 3600, "/");  // Ustawiamy ciasteczko userId
+   
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/styl_pyknijmy3.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#000000"/>
+	<title>PyknijMy</title>
+	<link rel="icon" type="image/png" href="grafika/ikonka_pyknijmy.png">
+	<link rel="stylesheet" href="css/styl_pyknijmy3.css">
+	<link rel="manifest" href="manifest.json">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<h2>Uczestnicy wydarzenia:</h2>
-<ul id="uczestnicy-lista"></ul>
+<header>
+       <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
+        <nav class="nav-links">
+            <a href="przegladaj.php">Przeglądaj</a>
+            <a href="eventchoice.php">Dodaj</a>
+            <a href="#">O nas</a>
+            <a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;text-decoration: underline;">Hello, <?php echo "<b>" . $user_data['user_name'] . "</b>"; ?></a>
+            <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
+        </nav>
+        <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
+      
+    </header>
+    <section class="heroprz">
+    <div class="uczestnicy-box">
+    <h2>Uczestnicy wydarzenia:</h2>
+    <ul id="uczestnicy-lista"></ul>
+  
 
 <script>
 async function ladujUczestnikow() {
@@ -54,6 +89,7 @@ async function ladujUczestnikow() {
 ladujUczestnikow();
 
 </script>
-
+</div>
+</section>
 </body>
 </html>

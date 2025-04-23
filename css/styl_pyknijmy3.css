@@ -403,30 +403,46 @@ body {
 .guzik1:hover {
     background-color: #333;
 }
-.edit_button{
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 10px;
-}
-.edit_button:hover {
-    background-color: #333;
-}
-.konto_uzytkownika{
-   margin-top: -40vh;
 
-}
-.profil_nick{
-    font-size:40px;
-    font-weight: bold;
-}
-.dodaj_button{
-    width: 10vw;
-    float:left;
-}
+.uczestnicy-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .uczestnicy-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #222;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  #uczestnicy-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #uczestnicy-lista li {
+    background-color: #f4f6f8;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    border-left: 4px solid #3b82f6;
+    border-radius: 8px;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  #uczestnicy-lista li::before {
+    content: "👤";
+    margin-right: 10px;
+  }
