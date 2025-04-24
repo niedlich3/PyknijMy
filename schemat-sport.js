@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const eventSchema = new mongoose.Schema({
   nazwa: { type: String, required: true },
   ilosc: { type: Number, required: true },
+  data: {type: String, required: true },
   opis: { type: String, required: true },
   sports: { type: [String], required: true }
 }, { collection: 'Sporty' }); // << Wymusza nazwę kolekcji

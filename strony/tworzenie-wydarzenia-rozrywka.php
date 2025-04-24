@@ -30,7 +30,7 @@
        <a href="../index.php"><img src="../grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="../przegladaj.php">Przeglądaj</a>
-            <a href="#">Dodaj</a>
+            <a href="../eventchoice.php">Dodaj</a>
             <a href="#">O nas</a>
             <a href="../profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;text-decoration: underline;">Hello, <?php echo "<b>" . $user_data['user_name'] . "</b>"; ?></a>
             <a href="../login.php"><img src="../grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
@@ -45,6 +45,9 @@
                
                 <label for="ilosc">Ilość osób:</label><br>
                 <input type="number" id="ilosc" name="ilosc" required><br>
+
+                <label for="data">Ilość osób:</label><br>
+                <input type="date" id="data" name="data" required><br>
                 
                 <label for="opis">Opis wydarzenia:</label><br>
                 <textarea id="opis" name="opis" maxlength="255" placeholder="Napisz opis"></textarea><br>
@@ -91,6 +94,7 @@
                 const EnteventData = {
                     nazwa: $("#nazwa").val(),
                     ilosc: $("#ilosc").val(),
+                    data: $("#data").val(),
                     opis: $("#opis").val(),
                     rozrywka: $("#rozrywkas").val()
                 };

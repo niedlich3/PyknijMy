@@ -56,85 +56,119 @@
     <span>Sport</span>
     <input type="checkbox" id="sport-checkbox" value="Sport" onclick="event.stopPropagation(); toggleSubcategories(event, 'sport');">
 </div>
-        <div class="subcategory sport">
-            <span>Piłka nożna</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory sport">
-            <span>Koszykówka</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory sport">
-            <span>Siatkówka</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory sport">
-            <span>Boks</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory sport">
-            <span>Golf</span>
-            <input type="checkbox">
-        </div>
-        
+<!--
+<div class="subcategory sport"><span>Snorkeling</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Taekwondo</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Badminton</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Rugby</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Nurkowanie</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Morsowanie</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Padel</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Futbol Amerykański</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Muay Thai</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Piłka nożna</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Hokej</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Unihokej</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>CrossFit</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Kalistenika</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Outdoor / Survival</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Myślistwo</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Sport z Psem</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Bilard</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Trail</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Boks</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Rowery</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Wędkarstwo</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Siatkówka plażowa</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Pływanie</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Szermierka</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Balet, taniec klasyczny</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Hokej na trawie</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Narciarstwo biegowe</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Karate</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Biegi OCR</span><input type="checkbox"></div>
+<div class="subcategory sport"><span>Piłka ręczna</span><input type="checkbox"></div>
+-->
         <div class="category">
     <span>Nauka</span>
     <input type="checkbox" id="nauka-checkbox" value="Nauka" onclick="event.stopPropagation(); toggleSubcategories(event, 'nauka');">
 </div>
-
-        <div class="subcategory nauka">
-            <span>Matematyka</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory nauka">
-            <span>J. polski</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory nauka">
-            <span>J. angielski</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory nauka">
-            <span>Informatyka</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory nauka">
-            <span>Geografia</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory nauka">
-            <span>Inne</span>
-            <input type="checkbox">
-        </div>
-        
+<!--
+<div class="subcategory nauka"><span>Język polski</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Matematyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Język obcy nowożytny</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Historia</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Wiedza o społeczeństwie</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Biologia</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Fizyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Geografia</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Chemia</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Informatyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Wychowanie fizyczne</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Plastyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Muzyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Edukacja dla bezpieczeństwa</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Religia</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Etyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy przedsiębiorczości</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Technika</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Edukacja zdrowotna</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Język łaciński i kultura antyczna</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Programowanie</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Sieci komputerowe</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Administracja systemów komputerowych</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Bazy danych</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Technologie internetowe</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy grafiki komputerowej</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Projektowanie systemów informatycznych</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy elektroniki</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Układy elektroniczne</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Montaż i serwis urządzeń elektronicznych</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Automatyka i robotyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Diagnostyka i naprawa urządzeń elektronicznych</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy mechatroniki</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Systemy sterowania</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy budownictwa</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Technologia materiałów budowlanych</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Organizacja transportu</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Logistyka</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Magazynowanie</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Planowanie produkcji</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Technologie mechaniczne</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Obróbka skrawaniem</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Maszyny i urządzenia</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy gastronomii</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Technologia gastronomiczna</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Podstawy elektrotechniki</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Instalacje elektryczne</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Techniki fotograficzne</span><input type="checkbox"></div>
+<div class="subcategory nauka"><span>Obsługa sprzętu fotograficznego</span><input type="checkbox"></div>
+-->
         <div class="category">
     <span>Rozrywka</span>
     <input type="checkbox" id="rozrywka-checkbox" onclick="event.stopPropagation(); toggleSubcategories(event, 'rozrywka');">
 </div>
-        <div class="subcategory rozrywka">
-            <span>Imprezy</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory rozrywka">
-            <span>Koncerty</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory rozrywka">
-            <span>Spotkania towarzyskie</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory rozrywka">
-            <span>Piwko</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory rozrywka">
-            <span>Domówka</span>
-            <input type="checkbox">
-        </div>
-        <div class="subcategory rozrywka">
-            <span>Inne</span>
-            <input type="checkbox">
-        </div>
+<!--
+<div class="subcategory rozrywka"><span>Wyjście do kina</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Spotkanie przy planszówkach</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wspólne gotowanie</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Spacer po mieście</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Zajęcia taneczne</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wieczór gier komputerowych</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Karaoke z przyjaciółmi</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wyjście na drinka</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Piknik w parku</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wspólne oglądanie meczu</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Escape room</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wspólna wycieczka rowerowa</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Spotkanie w kawiarni</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wyprawa na koncert</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Wizyta w muzeum lub galerii</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Warsztaty artystyczne</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Zajęcia jogi lub medytacji</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Spontaniczne wyjście na imprezę</span><input type="checkbox"></div>
+<div class="subcategory rozrywka"><span>Zajęcia z fotografii</span><input type="checkbox"></div>
+-->
     </div>
     <div id="wydarzenia-container">
         <h2>Wydarzenia</h2>

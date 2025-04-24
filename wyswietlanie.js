@@ -35,6 +35,9 @@ async function pobierzWydarzenia() {
             if (event.przedmioty) {
                 szczegoly += `Przedmiot: ${event.przedmioty} <br>`;
             }
+            if (event.data) {
+                szczegoly += `Data: ${event.data} <br>`;
+            }
             if (event.rozrywka) {
                 szczegoly += `Rodzaj rozrywki: ${event.rozrywka} <br>`;
             }

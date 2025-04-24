@@ -7,9 +7,15 @@ $user_data = check_login($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $about_me = $_POST["about_me"];
+    $birthdate = $_POST["birthdate"];
+    $gender = $_POST["gender"];
     $id = $_GET['id'];
     $update_query = "UPDATE users SET about_me = '$about_me' WHERE id = $id";
     mysqli_query($conn, $update_query);
+    $update_query1 = "UPDATE users SET birthdate = '$birthdate' WHERE id = $id";
+    mysqli_query($conn, $update_query1);
+    $update_query2 = "UPDATE users SET gender = '$gender' WHERE id = $id";
+    mysqli_query($conn, $update_query2);
     header("Refresh:0");
     exit();
 }
@@ -43,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <!--<li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;">Hello, <?php echo $user_data['user_name']; ?></a></li>-->  
         <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
-    <section class="hero" >
+    <section class="heroprzy" >
     <?php
     if (!$conn) {
         die("Błąd połączenia: " . mysqli_connect_error());
@@ -68,8 +74,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<button class="edit_button">Edytuj</button>';
         echo '</div>';
         echo '<form class="edit_about_me_form" style="display: none;" method="post">';
-        echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600">' . $row['about_me'] . '</textarea>';
-        echo '<button type="submit" name="submit">Dodaj</button>';
+        echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600" class="about_me">' . $row['about_me'] . '</textarea>';
+        echo '<div class="dob_gender_container">';
+echo '<label for="birthdate">Data urodzenia:</label>';
+echo '<input type="date" name="birthdate" id="birthdate" value="' . $row['birthdate'] . '" required>';
+echo '<label for="gender">Płeć:</label>';
+echo '<select name="gender" id="gender" required>';
+echo '<option value="male"' . ($row['gender'] == 'male' ? ' selected' : '') . '>Mężczyzna</option>';
+echo '<option value="female"' . ($row['gender'] == 'female' ? ' selected' : '') . '>Kobieta</option>';
+echo '<option value="other"' . ($row['gender'] == 'other' ? ' selected' : '') . '>Inna</option>';
+echo '</select>';
+echo '</div>';
+        echo '<button type="submit" name="submit"class="submit_button">Dodaj</button>';
         echo '<button type="button" class="cancel_button">Anuluj</button>';
         echo '</form>';
         echo '</div>';
@@ -89,14 +105,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     editButton.addEventListener('click', function() {
         editForm.style.display = 'block';
+         document.querySelector('.edit_about_me_form').style.display = 'block';
         document.querySelector('.about_me_container').style.display = 'none';
     });
 
     cancelButton.addEventListener('click', function() {
         editForm.style.display = 'none';
+        document.querySelector('.edit_about_me_form').style.display = 'none';
         document.querySelector('.about_me_container').style.display = 'block';
     });
 });
+
+
 </script>
 
 </body>

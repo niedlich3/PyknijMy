@@ -39,13 +39,17 @@
         <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
       
     </header>
-    <section class="heroprz">
+    <section class="heroprzy">
+    
+    <div id="wydarzenie-info"></div>
     <div class="uczestnicy-box">
     <h2>Uczestnicy wydarzenia:</h2>
     <ul id="uczestnicy-lista"></ul>
-  
-
+    
 <script>
+const params = new URLSearchParams(window.location.search);
+const eventId = params.get('id');
+
 async function ladujUczestnikow() {
     const params = new URLSearchParams(window.location.search);
     const eventId = params.get('id');
@@ -85,9 +89,31 @@ async function ladujUczestnikow() {
     }
 }
 
+async function ladujWydarzenie() {
+    if (!eventId) {
+        document.getElementById('wydarzenie-info').innerHTML = '<p>Nie podano ID wydarzenia</p>';
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:3000/wydarzenie/${eventId}`);
+        const wydarzenie = await res.json();
+
+        const infoDiv = document.getElementById('wydarzenie-info');
+        infoDiv.innerHTML = `
+            <h3>${wydarzenie.nazwa}</h3>
+            <p><strong>Typ:</strong> ${wydarzenie.typ}</p>
+            <p><strong>Opis:</strong> ${wydarzenie.opis}</p>
+            <p><strong>Ilość miejsc:</strong> ${wydarzenie.ilosc}</p>
+        `;
+    } catch (err) {
+        console.error("Błąd przy pobieraniu wydarzenia:", err);
+        document.getElementById('wydarzenie-info').innerHTML = '<p>Błąd ładowania wydarzenia</p>';
+    }
+}
 
 ladujUczestnikow();
-
+ladujWydarzenie();
 </script>
 </div>
 </section>

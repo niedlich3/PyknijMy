@@ -113,12 +113,13 @@ app.post('/dolaczDoWydarzenia', async (req, res) => {
 app.post('/dodajWydarzenieSportowe', async (req, res) => {
     console.log("Otrzymane dane (Sportowe):", req.body);
     try {
-        const { nazwa, ilosc, opis, sports } = req.body;
+        const { nazwa, ilosc, data, opis, sports } = req.body;
 
         // Tworzenie nowego wydarzenia sportowego
         const noweWydarzenieSportowe = new SportEvent({
             nazwa,
             ilosc: Number(ilosc),
+            data,
             opis,
             sports
         });
@@ -136,12 +137,13 @@ app.post('/dodajWydarzenieSportowe', async (req, res) => {
 app.post('/dodajWydarzenieEdukacyjne', async (req, res) => {
     console.log("Otrzymane dane (Edukacyjne):", req.body);
     try {
-        const { nazwa, ilosc, opis, przedmioty } = req.body;
+        const { nazwa, ilosc, data, opis, przedmioty } = req.body;
 
         // Tworzenie nowego wydarzenia edukacyjnego
         const noweWydarzenieEdukacyjne = new EducationEvent({
             nazwa,
             ilosc: Number(ilosc),
+            data,
             opis,
             przedmioty
         });
@@ -159,12 +161,13 @@ app.post('/dodajWydarzenieEdukacyjne', async (req, res) => {
 app.post('/dodajWydarzenieRozrywka', async (req, res) => {
     console.log("Otrzymane dane (Rozrywka):", req.body);
     try {
-        const { nazwa, ilosc, opis, rozrywka } = req.body;
+        const { nazwa, ilosc, data, opis, rozrywka } = req.body;
 
         // Tworzenie nowego wydarzenia sportowego
         const noweWydarzenieRozrywka = new EntertainmentEvent({
             nazwa,
             ilosc: Number(ilosc),
+            data,
             opis,
             rozrywka
         });
@@ -242,7 +245,26 @@ app.get('/uczestnicy/:eventid', async (req, res) => {
         res.status(500).json({ message: "Błąd serwera" });
     }
 });
+app.get('/wydarzenie/:id', async (req, res) => {
+    const { id } = req.params;
 
+    try {
+        // Próbujemy znaleźć wydarzenie w każdej kolekcji
+        const sport = await SportEvent.findById(id);
+        if (sport) return res.json({ ...sport.toObject(), typ: 'sport' });
+
+        const edukacja = await EducationEvent.findById(id);
+        if (edukacja) return res.json({ ...edukacja.toObject(), typ: 'edukacja' });
+
+        const rozrywka = await EntertainmentEvent.findById(id);
+        if (rozrywka) return res.json({ ...rozrywka.toObject(), typ: 'rozrywka' });
+
+        res.status(404).json({ message: 'Nie znaleziono wydarzenia' });
+    } catch (err) {
+        console.error("Błąd podczas pobierania wydarzenia:", err);
+        res.status(500).json({ message: 'Błąd serwera' });
+    }
+});
 
 // Konfiguracja portu i uruchomienie serwera
 const PORT = 3000;
