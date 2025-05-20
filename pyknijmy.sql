@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2025 at 04:25 PM
--- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.0.30
+-- Czas generowania: 20 Maj 2025, 19:51
+-- Wersja serwera: 10.4.27-MariaDB
+-- Wersja PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pyknijmy`
+-- Baza danych: `pyknijmy`
 --
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`id`, `user_id`, `user_name`, `email`, `password`, `date`, `about_me`, `profile_image`, `birthdate`, `gender`) VALUES
@@ -50,7 +50,8 @@ INSERT INTO `users` (`id`, `user_id`, `user_name`, `email`, `password`, `date`, 
 (3, 589910, 'admin', 'remuwson@13', '$2y$10$l/VpRuJP1viu92dkwMTn1.QH3UPEcQapKz1/q1TQdYzHWuTc7H3Dq', '2025-04-08 15:51:42', '', '', NULL, 'male'),
 (4, 685643601, 'remek', 'remek@12', '$2y$10$5zTZi7HPz5bSVLXus.5SR.FSZivt8mYnJ.pCbRlqbJvPzAyjmLFJa', '2025-04-24 13:02:26', 'jestem glupi tzfl!', '', NULL, 'male'),
 (5, 8572421547762, 'asd', 'asd@asd', '$2y$10$8Y6/46KYahGJLZG/5ZsvBe7dzxe3Pzp2.v/Us.4S60Y/6fPTVfDY6', '2025-04-24 12:56:11', 'jestem glupi', '', NULL, 'male'),
-(10, 41405702141407, 'vfeve', 'qwerty@pp', '$2y$10$r8Ea7Kp7hLiJbpEB0dszX.gX2p6V/9KQB/J/c.WdHLorKYiWs3hxy', '2025-04-24 14:25:31', 'Cześćwe', '', '2025-03-31', 'female');
+(10, 41405702141407, 'vfeve', 'qwerty@pp', '$2y$10$r8Ea7Kp7hLiJbpEB0dszX.gX2p6V/9KQB/J/c.WdHLorKYiWs3hxy', '2025-04-24 14:25:31', 'Cześćwe', '', '2025-03-31', 'female'),
+(11, 39356086, 'niedlich', 'nied@wp.pl', '$2y$10$uDkJKjehgomSoqZHE.344uhf8AUT3mvbDqH6wous0fihNrmqJoEgW', '2025-05-20 17:47:47', '', '', '2025-04-30', 'other');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -63,14 +64,14 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
