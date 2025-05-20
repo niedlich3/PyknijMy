@@ -76,10 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<form class="edit_about_me_form" style="display: none;" method="post">';
         echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600" class="about_me">' . $row['about_me'] . '</textarea>';
         echo '<div class="dob_gender_container">';
-echo '<label for="birthdate">Data urodzenia:</label>';
+echo '<label for="birthdate"class="data_urodzenia">Data urodzenia:</label>';
 echo '<input type="date" name="birthdate" id="birthdate" value="' . $row['birthdate'] . '" required>';
-echo '<label for="gender">Płeć:</label>';
-echo '<select name="gender" id="gender" required>';
+echo '<label for="gender"class="wybor_plci">Płeć:</label><br>';
+echo '<select name="gender" id="gender" required><br>';
 echo '<option value="male"' . ($row['gender'] == 'male' ? ' selected' : '') . '>Mężczyzna</option>';
 echo '<option value="female"' . ($row['gender'] == 'female' ? ' selected' : '') . '>Kobieta</option>';
 echo '<option value="other"' . ($row['gender'] == 'other' ? ' selected' : '') . '>Inna</option>';
