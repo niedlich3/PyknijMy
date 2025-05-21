@@ -27,11 +27,15 @@ session_start();
 					$user_data = mysqli_fetch_assoc($result);
 					
 					
-        if (password_verify($password, $user_data['password'])) {
-            
-            $_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: ../index.php");
-						die;
+		if (password_verify($password, $user_data['password'])) {
+			$_SESSION['user_id'] = $user_data['user_id'];
+			$_SESSION['user_name'] = $user_data['user_name'];
+			$_SESSION['is_admin'] = $user_data['is_admin']; 
+					
+				header("Location: ../index.php");
+				die;
+		
+					
         } else {
             $_SESSION['login_error'] = "Nieprawidłowa nazwa użytkownika lub hasło.";
             header("Location: ../login/login.php");
