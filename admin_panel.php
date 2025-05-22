@@ -1,15 +1,32 @@
 <?php
 session_start();
-require_once("logowanie/connection.php"); // upewnij się, że masz ten plik z $conn
+require_once("logowanie/connection.php"); 
 
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
    header("Location: index.php");
    exit;
 }
 
-// Pobieranie danych użytkowników
+
+
 $query = "SELECT id, user_name, email, gender, birthdate, date FROM users";
 $result = mysqli_query($conn, $query);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user_id'])) {
+    $userIdToDelete = intval($_POST['delete_user_id']);
+
+    // Sprawdź czy admin nie próbuje usunąć samego siebie
+    if ($userIdToDelete == $_SESSION['user_id']) {
+        echo "<script>alert('Nie możesz usunąć swojego konta jako administrator.'); window.location.href = '" . $_SERVER['PHP_SELF'] . "';</script>";
+        exit();
+    }
+
+    $delete_query = "DELETE FROM users WHERE id = $userIdToDelete";
+    if (mysqli_query($conn, $delete_query)) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +34,45 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <title>Panel administratora</title>
-    <style>
+    
+</head>
+<body>
+
+    <h1>Panel administratora</h1>
+    <p>Lista zarejestrowanych użytkowników:</p>
+
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>Nazwa użytkownika</th>
+        <th>Email</th>
+        <th>Płeć</th>
+        <th>Data urodzenia</th>
+        <th>Data rejestracji</th>
+        <th>Usuń</th> <!-- NOWA KOLUMNA -->
+    </tr>
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <tr>
+        <td><?= htmlspecialchars($row['id']) ?></td>
+        <td><?= htmlspecialchars($row['user_name']) ?></td>
+        <td><?= htmlspecialchars($row['email']) ?></td>
+        <td><?= htmlspecialchars($row['gender']) ?></td>
+        <td><?= htmlspecialchars($row['birthdate']) ?></td>
+        <td><?= htmlspecialchars($row['date']) ?></td>
+        <td>
+        <form method="post" onsubmit="return confirm('Czy na pewno chcesz usunąć tego użytkownika?');">
+            <input type="hidden" name="delete_user_id" value="<?= htmlspecialchars($row['id']) ?>">
+            <button type="submit" style="border:none; background:none; color:red; font-size: 18px; cursor: pointer;">❌</button>
+        </form>
+        </td>
+    </tr>
+    <?php endwhile; ?>
+</table>
+
+    <a class="back" href="index.php">← Wróć na stronę główną</a>
+
+</body>
+<style>
         body {
             background-color: #ffeb3b;
             color: #fff;
@@ -90,34 +145,4 @@ $result = mysqli_query($conn, $query);
             box-shadow: 0 2px 6px rgba(0,0,0,0.12);
         }
     </style>
-</head>
-<body>
-
-    <h1>Panel administratora</h1>
-    <p>Lista zarejestrowanych użytkowników:</p>
-
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nazwa użytkownika</th>
-            <th>Email</th>
-            <th>Płeć</th>
-            <th>Data urodzenia</th>
-            <th>Data rejestracji</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)): ?>
-        <tr>
-            <td><?= htmlspecialchars($row['id']) ?></td>
-            <td><?= htmlspecialchars($row['user_name']) ?></td>
-            <td><?= htmlspecialchars($row['email']) ?></td>
-            <td><?= htmlspecialchars($row['gender']) ?></td>
-            <td><?= htmlspecialchars($row['birthdate']) ?></td>
-            <td><?= htmlspecialchars($row['date']) ?></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-
-    <a class="back" href="index.php">← Wróć na stronę główną</a>
-
-</body>
 </html>

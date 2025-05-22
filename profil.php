@@ -42,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="przegladaj.php">Przeglądaj</a>
-            <a href="#">Dodaj</a>
+            <a href="eventchoice.php">Dodaj</a>
             <a href="#">O nas</a>
         </nav>
         <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
       <!--<li><a href="profil.php?id=<?php echo $user_data['id']?>" class="text" style="color: black;">Hello, <?php echo $user_data['user_name']; ?></a></li>-->  
-        <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
+        <a href="profil.php?id=<?php echo $user_data['id']?>"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
     <section class="heroprzy" >
     <?php
@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo nl2br($row['about_me']); // Wyswietlamy opis, nl2br używamy aby zachować formatowanie tekstu
         echo '</div>';
         echo '<button class="edit_button">Edytuj</button>';
+        echo '<a href="logout.php"><button type="button" class="logout">Wyloguj</button></a>';
         echo '</div>';
         echo '<form class="edit_about_me_form" style="display: none;" method="post">';
         echo '<textarea name="about_me" placeholder="O mnie (maks. 600 znaków)" maxlength="600" class="about_me">' . $row['about_me'] . '</textarea>';
@@ -98,7 +99,7 @@ echo '</div>';
     
     </section>
     <script>
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     var editButton = document.querySelector('.edit_button');
     var editForm = document.querySelector('.edit_about_me_form');
     var cancelButton = document.querySelector('.cancel_button');

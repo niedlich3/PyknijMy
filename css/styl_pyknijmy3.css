@@ -163,14 +163,12 @@ header {
 
 
 .uslugi{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Dostosowuje szerokość kolumny */
-    gap: 3vh; /* Ustawia odstęp zarówno poziomy, jak i pionowy */
-    justify-items: center;
-    padding: 20px;
-    margin-left: 13vw;
-    margin-right: 13vw;
-
+    display: flex;
+    gap: 100px;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:auto;
 }
 .hero-content {
     display: flex;
@@ -528,6 +526,21 @@ body {
 }
 
 .edit_button:hover {
+    background-color: #333;
+}
+.logout{ background-color: black;
+    color: white;
+    border-radius: 20px;
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.logout:hover {
     background-color: #333;
 }
 .konto_uzytkownika{
