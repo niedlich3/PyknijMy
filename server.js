@@ -265,7 +265,29 @@ app.get('/wydarzenie/:id', async (req, res) => {
         res.status(500).json({ message: 'Błąd serwera' });
     }
 });
+app.delete('/usunWydarzenie', async (req, res) => {
+    const { event_id } = req.body;
 
+    try {
+        // Usuwanie z kolekcji SportEvent
+        const result1 = await SportEvent.deleteOne({ _id: event_id });
+
+        // Usuwanie z kolekcji EducationEvent
+        const result2 = await EducationEvent.deleteOne({ _id: event_id });
+
+        // Usuwanie z kolekcji EntertainmentEvent
+        const result3 = await EntertainmentEvent.deleteOne({ _id: event_id });
+
+        if (result1.deletedCount || result2.deletedCount || result3.deletedCount) {
+            res.json({ message: "Wydarzenie zostało usunięte." });
+        } else {
+            res.status(404).json({ message: "Nie znaleziono wydarzenia." });
+        }
+    } catch (error) {
+        console.error("Błąd podczas usuwania wydarzenia:", error);
+        res.status(500).json({ message: "Błąd serwera." });
+    }
+});
 // Konfiguracja portu i uruchomienie serwera
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user_id'])) {
 <body>
 
     <h1>Panel administratora</h1>
+    
     <p>Lista zarejestrowanych użytkowników:</p>
 
     <table>
@@ -70,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user_id'])) {
 </table>
 
     <a class="back" href="index.php">← Wróć na stronę główną</a>
+    <a class="back" href="adminevents.php">Lista wydarzeń</a>
 
 </body>
 <style>
