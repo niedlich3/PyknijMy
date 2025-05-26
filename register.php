@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -23,11 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Sprawdzanie, czy hasła są takie same
     if ($password !== $password_repeat) {
         $_SESSION['error'] = "Hasła nie są takie same!";
-		header("Location: register.php");
+        header("Location: register.php");
         exit;
-
     }
-
+    // 2. Czy hasło ma min. 8 znaków i dużą literę?
+    if (!preg_match('/^(?=.*[A-Z]).{8,}$/', $password)) {
+        $_SESSION['error'] = "Hasło musi mieć co najmniej 8 znaków i przynajmniej jedną wielką literę.";
+        header("Location: register.php");
+        exit;
+    }
     // Sprawdzenie, czy użytkownik już istnieje
     $query = "SELECT * FROM users WHERE user_name = ?";
     $stmt = mysqli_prepare($conn, $query);
@@ -64,25 +68,27 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#000000"/>
-	<title>PyknijMy</title>
-	<link rel="icon" type="image/png" href="grafika/ikonka_pyknijmy.png">
-	<link rel="stylesheet" href="css/styl_pyknijmy3.css">
-	<link rel="manifest" href="manifest.json">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+    <title>PyknijMy</title>
+    <link rel="icon" type="image/png" href="grafika/ikonka_pyknijmy.png">
+    <link rel="stylesheet" href="css/styl_pyknijmy3.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body style ="
+
+<body style="
     overflow:visible;" id="scrollbar4">
     <header>
-       <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
+        <a href="index.php"><img src="grafika/logopyknijmy.png" alt="Logo" class="logo"></a>
         <nav class="nav-links">
             <a href="#">Przeglądaj</a>
             <a href="#">Dodaj</a>
@@ -91,31 +97,45 @@ mysqli_close($conn);
         <a href="login.php"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
     </header>
 
-	
+
 
     <section class="hero">
         <section class="rej">
             <form method="post">
-                <label>Login</br><input type="text" placeholder="Podaj login" name="user_name"></label></br></br>
-                <label>E-mail</br><input type="email" placeholder="Podaj email" name="email"></label></br></br>
-                <label>Hasło</br><input type="password" placeholder="Podaj hasło" name="password"></label></br></br>
-                <label>Powtórz hasło</br><input type="password" placeholder="Powtórz hasło" name="password_repeat"></label></br></br>
-				<?php
-    if (isset($_SESSION['error'])) {
-        echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
-        unset($_SESSION['error']); // Usunięcie błędu po wyświetleniu
-    }
+                <label>Login</br>
+                    <input type="text" placeholder="Podaj login" name="user_name" required>
+                </label></br></br>
 
-    if (isset($_SESSION['success'])) {
-        echo '<p style="color: green;">' . $_SESSION['success'] . '</p>';
-        unset($_SESSION['success']); // Usunięcie sukcesu po wyświetleniu
-    }
-    ?>
-				<button type="submit" class="guzik1">Stwórz konto</button></br></br>
-				
+                <label>E-mail</br>
+                    <input type="email" placeholder="Podaj email" name="email" required>
+                </label></br></br>
+
+                <label>Hasło</br>
+                    <input type="password" placeholder="Podaj hasło" name="password" required
+                        pattern="(?=.*[A-Z]).{8,}"
+                        title="Minimum 8 znaków i przynajmniej jedna wielka litera.">
+                </label></br></br>
+
+                <label>Powtórz hasło</br>
+                    <input type="password" placeholder="Powtórz hasło" name="password_repeat" required>
+                </label></br></br>
+
+                <?php
+                if (isset($_SESSION['error'])) {
+                    echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+                    unset($_SESSION['error']);
+                }
+
+                if (isset($_SESSION['success'])) {
+                    echo '<p style="color: green;">' . $_SESSION['success'] . '</p>';
+                    unset($_SESSION['success']);
+                }
+                ?>
+                <button type="submit" class="guzik1">Stwórz konto</button></br></br>
             </form>
-			
+
         </section>
     </section>
 </body>
+
 </html>

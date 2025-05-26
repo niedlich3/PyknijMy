@@ -20,6 +20,8 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
 <body>
     <section>
         <h1>Lista wydarzeń</h1>
+        <a class="back" href="index.php">← Wróć na stronę główną</a>
+        <a class="back" href="admin_panel.php">Wróć do panelu admina</a>
         <input type="hidden" id="sport-checkbox">
         <input type="hidden" id="nauka-checkbox">
         <input type="hidden" id="rozrywka-checkbox">

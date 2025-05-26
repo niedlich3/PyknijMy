@@ -33,6 +33,9 @@
             <a href="przegladaj.php">Przeglądaj</a>
             <a href="eventchoice.php">Dodaj</a>
             <a href="#">O nas</a>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
+            <a href="admin_panel.php">Panel administratora</a>
+            <?php endif; ?>
             <a href="profil.php?id=<?php echo $user_data['id']?>"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
         </nav>
         <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
