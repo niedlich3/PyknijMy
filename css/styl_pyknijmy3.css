@@ -67,7 +67,7 @@ header {
 }
 .hero-text button:hover{
     background-color: rgb(249, 249, 249);
-    transform: scale(1.10);
+    transform: scale(1.10); 
     -webkit-transition: transform 0.1s ease-in-out;
     box-shadow: 5px 5px 8px rgb(162, 162, 162, 0.2);
 }
@@ -241,7 +241,38 @@ header {
     width: 20vw;
     height: 70vh;
     overflow: auto;
-    
+
+}
+.container input[type="date"] {
+    width: 95%;
+    background: #e9d5ff; /* delikatny fiolet */
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: inherit;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.container button {
+    width: 100%;
+    background: #e9d5ff; /* ten sam fiolet */
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    color: #000;
+    transition: background 0.3s ease;
+}
+
+.container button:hover {
+    background: #d8b4fe;
 }
 #scrollbar4::-webkit-scrollbar {
     width: 10px;

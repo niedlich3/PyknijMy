@@ -22,7 +22,6 @@ setcookie('userId', $user_id, time() + 3600, "/");  // Ustawiamy ciasteczko user
     <link rel="stylesheet" href="css/styl_pyknijmy3.css">
     <link rel="manifest" href="manifest.json">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -36,9 +35,9 @@ setcookie('userId', $user_id, time() + 3600, "/");  // Ustawiamy ciasteczko user
             <a href="eventchoice.php">Dodaj</a>
             <a href="onas.php">O nas</a>
             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
-            <a href="admin_panel.php">Panel administratora</a>
+                <a href="admin_panel.php">Panel administratora</a>
             <?php endif; ?>
-            <a href="profil.php?id=<?php echo $user_data['id']?>"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
+            <a href="profil.php?id=<?php echo $user_data['id'] ?>"><img src="grafika/logicon.png" alt="Ikona użytkownika" class="icon"></a>
         </nav>
         <!-- TO NIZEJ JEST DO TESTOWANIA SESJI -->
 
@@ -173,6 +172,10 @@ setcookie('userId', $user_id, time() + 3600, "/");  // Ustawiamy ciasteczko user
 <div class="subcategory rozrywka"><span>Spontaniczne wyjście na imprezę</span><input type="checkbox"></div>
 <div class="subcategory rozrywka"><span>Zajęcia z fotografii</span><input type="checkbox"></div>
 -->
+            <form id="dataForm" method="POST">
+                <input type="date" name="data" id="data-wydarzenia"><br>
+                <button>Pokaż wszystkie</button>
+            </form>
         </div>
         <div id="wydarzenia-container">
             <h2>Wydarzenia</h2>
