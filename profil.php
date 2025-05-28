@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav class="nav-links">
             <a href="przegladaj.php">Przeglądaj</a>
             <a href="eventchoice.php">Dodaj</a>
-            <a href="#">O nas</a>
+            <a href="onas.php">O nas</a>
             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
                 <a href="admin_panel.php">Panel administratora</a>
             <?php endif; ?>
